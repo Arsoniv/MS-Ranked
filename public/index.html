@@ -4,33 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper 1v1</title>
-    <style>
-        /* Minesweeper grid style */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(10, 30px);
-            grid-template-rows: repeat(10, 30px);
-        }
-        .cell {
-            width: 30px;
-            height: 30px;
-            border: 1px solid black;
-            text-align: center;
-            line-height: 30px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .cleared-counter {
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
-    <div class="grid"></div>
-    <div class="cleared-counter">
-        <div class="player1-cleared">Player 1 Cleared: 0</div>
-        <div class="player2-cleared">Player 2 Cleared: 0</div>
-    </div>
     <script src="game.js"></script>
 </body>
 </html>
