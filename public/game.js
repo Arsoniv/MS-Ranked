@@ -3,7 +3,7 @@ const ws = new WebSocket('wss://ms-ranked.vercel.app');
 let playerId;
 let gameState;
 
-socket.onmessage = function(event) {
+ws.onmessage = function(event) {
     const data = JSON.parse(event.data);
 
     if (data.type === 'init') {
@@ -32,7 +32,7 @@ function renderGameState(board) {
 function handleCellClick(row, col) {
     if (!gameState[row][col].revealed) {
         gameState[row][col].revealed = true;  // Reveal the cell
-        socket.send(JSON.stringify({ type: 'move', playerId, row, col }));
+        ws.send(JSON.stringify({ type: 'move', playerId, row, col }));
         renderGameState(gameState);
     }
 }
