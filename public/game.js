@@ -1,4 +1,4 @@
-const socket = new WebSocket(`ws://${window.location.host}`);
+const ws = new WebSocket('wss://ms-ranked.vercel.app');
 
 let playerId;
 let gameState;
