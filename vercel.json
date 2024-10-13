@@ -16,6 +16,10 @@
       "dest": "/public/index.html"
     },
     {
+      "src": "/game.js",
+      "dest": "/public/game.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.js"
     }
