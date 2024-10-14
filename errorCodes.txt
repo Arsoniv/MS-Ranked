@@ -1,0 +1,1 @@
+311 = account credentials (likely username) allready in use
