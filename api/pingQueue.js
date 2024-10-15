@@ -16,7 +16,7 @@ export default async (req, res) => {
     )
 
     const selectResponse2 = await pool.query(
-        "SELECT * FROM matches WHERE playerone = $1 OR playertwo = $1",
+        "SELECT * FROM matches WHERE playerone = $1 OR playertwo = $1 AND winner IS NULL",
         [userName]
     )
 
