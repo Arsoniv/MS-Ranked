@@ -30,6 +30,10 @@ export default async (req, res) => {
 
         })
     }else if (selectResponse.rows.length > 0) {
+        const updateResponse2 = await pool.query(
+            "UPDATE queue SET time = EXTRACT(EPOCH FROM NOW()) WHERE username = $1",
+            [userName]
+        )
         res.status(201).send({"result": "In queue..."})
     }else {
         res.status(301).send({"result": "Not in queue or in game, get fucked"})

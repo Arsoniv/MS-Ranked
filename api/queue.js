@@ -79,6 +79,11 @@ export default async (req, res) => {
         [userName, password]
     )
 
+    const deleteResponse2 = await pool.query(
+        "DELETE FROM queue WHERE time < EXTRACT(EPOCH FROM NOW()) - 60"
+    );
+    
+
     const selectResponse = await pool.query(
         "SELECT * FROM queue"
     )
