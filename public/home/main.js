@@ -30,7 +30,8 @@ async function queue() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: nameIn.value
+            userName: nameIn.value,
+            password: passIn.value
         })
     })
     if (response.status === 201) {
