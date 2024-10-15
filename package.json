@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Arsoniv/Minesweeper-Ranked#readme",
   "dependencies": {
-    "@vercel/postgres": "^0.10.0"
+    "@vercel/postgres": "^0.10.0",
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.0"
   }
 }

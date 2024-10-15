@@ -1,6 +1,8 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
+let pingInterval = 0;
+let score = 0;
 let fillStyle = "#eeeeee";
 let fillStyle2 = "#999999";
 let textFillStyle = "#222222";
@@ -8,7 +10,16 @@ let boardWidth = 20;
 let boardHeight = 20;
 let tileSeperation = 2;
 let tileWidth = 20;
-let mines = 80; 
+let gameId = localStorage.getItem("id");
+let mines = JSON.parse(localStorage.getItem("mines"));
+let userName = localStorage.getItem("userName");
+let oppoName = localStorage.getItem("opponent");
+let oppoScore = 0;
+const paused = false;
+console.log(mines);
+
+const heading = document.getElementById("heading");
+heading.innerText = (userName+" vs "+oppoName+"   -   "+oppoScore);
 
 let board = [];
 let displayedBoard = [];
@@ -22,6 +33,12 @@ function initializeBoard() {
             displayedBoard[y][x] = 10;
         }
     }
+}
+
+function loadBoard() {
+    mines.forEach(mine => {
+        board[mine[1]][mine[0]] = 1;
+    });
 }
 
 function createRandomBoard() {
@@ -81,6 +98,40 @@ function drawBoard() {
     }
 }
 
+async function checkForWin() {
+    let xC = 0;
+    let yC = 0;
+
+    let hasWon = true;
+
+    while (yC < boardHeight) {
+        while (xC < boardWidth) {
+            if (board[yC][xC] != 1) {
+                if (displayedBoard[yC][xC] != 10) {
+                    hasWon = false;
+                    break;
+                }
+            }
+            xC++;
+        } 
+        xC = 0;  
+        yC++;
+    }
+
+    if (hasWon) {
+        const response = await fetch("/api/win", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: gameId,
+                userName: userName
+            })
+        })
+    }
+}
+
 function getTileCoordinates(mouseX, mouseY) {
 
     let tileX = Math.floor(mouseX / (tileWidth + tileSeperation));
@@ -108,7 +159,7 @@ canvas.addEventListener("click", function(event) {
 
         console.log(event.button);
 
-        if (event.button === 0) {
+        if (event.button === 0 && !paused) {
             
             mine(tileX, tileY);
 
@@ -116,15 +167,42 @@ canvas.addEventListener("click", function(event) {
     }
 });
 
+async function ping() {
+    const response = await fetch("/api/matchPing", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: gameId,
+            userName: userName,
+            score: score
+        })
+    })
+    const data = await response.json();
+
+    oppoScore = data.oppoScore;
+
+    if (data.winner === oppoName) {
+        alert("YOU LOST (server)")
+    }
+    if (data.winner === userName) {
+        alert("YOU WON (server)")
+    }
+
+    heading.innerText = (userName+" vs "+oppoName+"   -   "+oppoScore);
+}
+
 function mine(x, y) {
     
     if (board[y][x] === 1) {
         initializeBoard();
-        createRandomBoard();
-        drawBoard();
         alert("You lose!");
+        lose();
         return;
     }
+
+    score+=1;
 
     let total = 0;
     const stack = [[x, y]];
@@ -137,6 +215,7 @@ function mine(x, y) {
     ];
 
     while (stack.length > 0) {
+        score+=1;
         const [currentX, currentY] = stack.pop();
 
         if (visited.has(`${currentY},${currentX}`)) {
@@ -171,11 +250,25 @@ function mine(x, y) {
     drawBoard();
 }
 
+async function lose() {
+    const response = await fetch("/api/lose", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: gameId,
+            opponent: oppoName
+        })
+    })
+}
+
 
 setCanvasSize();
 initializeBoard();
-createRandomBoard();
+loadBoard();
 drawBoard();
+pingInterval = setInterval(ping, 2000);
 
 
 window.addEventListener('resize', () => {
@@ -187,4 +280,6 @@ document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
 
-
+window.addEventListener('beforeunload', function (event) {
+    lose();
+});
