@@ -5,6 +5,25 @@ const button = document.getElementById("button");
 const nameIn = document.getElementById("nameIn");
 const passIn = document.getElementById("passIn");
 
+async function createAccount() {
+    let userNameIn = nameIn.value;
+    let passNameIn = passIn.value;
+
+    const response = await fetch("api/createAccount", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userName: userNameIn,
+            password: passNameIn
+        })
+    })
+
+    if (response.status === 200) alert("account created");
+    if (response.status === 311) alert("Username in use, please use another name or log in.");
+}
+
 async function queue() {
     button.innerText = "loading...";
     const response = await fetch("api/queue", {
@@ -67,25 +86,6 @@ async function queuePing() {
         location = "play/";
     }
 
-    async function createAccount() {
-        let userNameIn = nameIn.value;
-        let passNameIn = passIn.value;
-
-        const response = await fetch("api/createAccount", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                userName: userNameIn,
-                password: passNameIn
-            })
-        })
-
-        if (response.status === 200) alert("account created");
-        if (response.status === 311) alert("Username in use, please use another name or log in.");
-
-
-    }
+    
 
 }
