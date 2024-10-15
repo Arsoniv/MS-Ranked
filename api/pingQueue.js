@@ -26,7 +26,8 @@ export default async (req, res) => {
             "you": selectResponse2.rows[0].playerone, 
             "opponent": selectResponse2.rows[0].playertwo,
             "mines": selectResponse2.rows[0].mines,
-            "id": selectResponse2.rows[0].id
+            "id": selectResponse2.rows[0].id,
+            "firstMine": selectResponse2.rows[0].firstmine
 
         })
     }else if (selectResponse.rows.length > 0) {

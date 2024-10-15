@@ -20,6 +20,25 @@ function secureRandom() {
     return randomBytes / Math.pow(2, 32); // Scale to a number between 0 and 1
 }
 
+function createStartingPos() {
+    let x1 = Math.floor(Math.round(Math.random()*(boardWidth-4))+2)
+    let y1 = Math.floor(Math.round(Math.random()*(boardHeight-4))+2)
+
+    console.log("x "+x1+"  y "+y1)
+
+    board[x1-1][y1-1] = 0;
+    board[x1-1][y1] = 0;
+    board[x1-1][y1+1] = 0;
+    board[x1][y1-1] = 0;
+    board[x1][y1] = 0;
+    board[x1][y1+1] = 0;
+    board[x1+1][y1-1] = 0;
+    board[x1+1][y1] = 0;
+    board[x1+1][y1+1] = 0;
+
+    return [x1, y1];
+}
+
 
 function getMines() {
     let mines = [];
@@ -120,17 +139,19 @@ export default async (req, res) => {
     
             initializeBoard();
             createRandomBoard();
+            let firstMine = createStartingPos();
     
             const insertResponse = await pool.query(
-                "INSERT INTO matches (mines, playerone, playertwo, playeronescore, playertwoscore) VALUES ($1, $2, $3, $4, $5)",
-                [getMines(), selectResponse.rows[0].username, userName, 0, 0]
+                "INSERT INTO matches (mines, playerone, playertwo, playeronescore, playertwoscore, firstMine) VALUES ($1, $2, $3, $4, $5, $6)",
+                [getMines(), selectResponse.rows[0].username, userName, 0, 0, firstMine]
             )
             res.status(200).send({
                 "result": "Found match", 
                 "you": userName, 
                 "opponent": selectResponse.rows[0].username,
                 "mines": getMines,
-                "id": 0
+                "id": 0,
+                "firstMine": firstMine
     
             })
         }

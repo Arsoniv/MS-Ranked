@@ -12,6 +12,7 @@ let tileSeperation = 2;
 let tileWidth = 20;
 let gameId = localStorage.getItem("id");
 let mines = JSON.parse(localStorage.getItem("mines"));
+let firstMine = JSON.parse(localStorage.getItem("firstMine"));
 let userName = localStorage.getItem("userName");
 let oppoName = localStorage.getItem("opponent");
 let oppoScore = 0;
@@ -287,6 +288,7 @@ setCanvasSize();
 initializeBoard();
 loadBoard();
 drawBoard();
+mine(firstMine[0], firstMine[1]);
 pingInterval = setInterval(ping, 2000);
 
 

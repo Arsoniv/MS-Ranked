@@ -66,6 +66,7 @@ async function queuePing() {
 
         localStorage.setItem("mines", JSON.stringify(data.mines));
         localStorage.setItem("id", data.id);
+        localStorage.setItem("firstMine", JSON.stringify(data.firstMine));
 
 
         if (first) {
