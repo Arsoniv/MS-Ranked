@@ -34,8 +34,4 @@ export default async (req, res) => {
     }else {
         res.status(301).send({"result": "Not in queue or in game, get fucked"})
     }
-
-    
-
-    await pool.end();
 };

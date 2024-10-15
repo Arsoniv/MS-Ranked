@@ -16,6 +16,4 @@ export default async (req, res) => {
     );
 
     res.status(200).json({ message: "Winner updated successfully", result: response });
-
-    await pool.end();
 };

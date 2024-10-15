@@ -16,6 +16,4 @@ export default async (req, res) => {
     )
 
     res.status(200).send({"result": "request complete", "response": response});
-
-    await pool.end();
 };

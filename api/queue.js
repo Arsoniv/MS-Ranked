@@ -111,8 +111,4 @@ export default async (req, res) => {
 
         })
     }
-
-    
-
-    await pool.end();
 };

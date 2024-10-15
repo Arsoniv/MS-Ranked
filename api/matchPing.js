@@ -38,6 +38,4 @@ export default async (req, res) => {
 
         res.status(200).send({"result": "request complete", "oppoScore": oppoScore, "winner": response2.rows[0].winner});
     }
-
-    await pool.end();
 };
