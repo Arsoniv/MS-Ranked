@@ -197,6 +197,8 @@ async function ping() {
     }
     if (data.winner === userName) {
         box.style.backgroundColor = "green";
+        localStorage.clear;
+        setTimeout(homePage, 1500);
         clearInterval(pingInterval);
     }
 
