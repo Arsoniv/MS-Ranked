@@ -6,8 +6,6 @@ const nameIn = document.getElementById("nameIn");
 const passIn = document.getElementById("passIn");
 
 async function createAccount() {
-    let userNameIn = nameIn.value;
-    let passNameIn = passIn.value;
 
     const response = await fetch("api/createAccount", {
         method: 'POST',
@@ -15,8 +13,8 @@ async function createAccount() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: userNameIn,
-            password: passNameIn
+            userName: nameIn.value,
+            password: passIn.value
         })
     })
 

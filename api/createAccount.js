@@ -9,20 +9,20 @@ const pool = new Pool({
 
 module.exports = async (req, res) => {
     
-    const {username, password} = req.body;
+    const {userName, password} = req.body;
 
     const client = await pool.connect();
 
     const users = await client.query(
         "SELECT * FROM userData WHERE username = $1",
-        [username]
+        [userName]
     );
 
     if (users.rows.length === 0) {
 
         await client.query(
             "INSERT INTO userData (username, password) VALUES ($1, $2)",
-            [username, password]
+            [userName, password]
         )
         res.status(200).send({"alert": 0, "status": "account created"})
     } else {
