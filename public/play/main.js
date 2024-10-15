@@ -15,9 +15,10 @@ let mines = JSON.parse(localStorage.getItem("mines"));
 let userName = localStorage.getItem("userName");
 let oppoName = localStorage.getItem("opponent");
 let oppoScore = 0;
-const paused = false;
+let paused = false;
 console.log(mines);
 
+const box = document.getElementById("box");
 const heading = document.getElementById("heading");
 heading.innerText = (userName+" vs "+oppoName+"   -   "+oppoScore);
 
@@ -119,6 +120,8 @@ async function checkForWin() {
     }
 
     if (hasWon) {
+        box.style.backgroundColor = "green";
+
         const response = await fetch("/api/win", {
             method: 'POST',
             headers: {
@@ -184,11 +187,12 @@ async function ping() {
     oppoScore = data.oppoScore;
 
     if (data.winner === oppoName) {
-        alert("YOU LOST (server)")
+        box.style.
+        backgroundColor = "red";
         clearInterval(pingInterval);
     }
     if (data.winner === userName) {
-        alert("YOU WON (server)")
+        box.style.backgroundColor = "green";
         clearInterval(pingInterval);
     }
 
@@ -199,13 +203,11 @@ function mine(x, y) {
     
     if (board[y][x] === 1) {
         initializeBoard();
-        alert("You lose!");
+        box.style.backgroundColor = "red";
         lose();
         clearInterval(pingInterval);
         return;
     }
-
-    score+=1;
 
     let total = 0;
     const stack = [[x, y]];
@@ -247,9 +249,13 @@ function mine(x, y) {
             }
         }
 
-        displayedBoard[currentY][currentX] = total;
+        if (displayedBoard[currentY][currentX] != total) {
+            displayedBoard[currentY][currentX] = total;
+            score += 1;
+        }
     }
 
+    checkForWin();
     drawBoard();
 }
 
@@ -264,6 +270,7 @@ async function lose() {
             opponent: oppoName
         })
     })
+    box.style.backgroundColor = "red";
 }
 
 
@@ -286,3 +293,4 @@ document.addEventListener("contextmenu", function(event) {
 window.addEventListener('beforeunload', function (event) {
     lose();
 });
+

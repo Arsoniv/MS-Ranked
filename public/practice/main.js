@@ -1,6 +1,9 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
+
+
+let score = 0;
 let fillStyle = "#eeeeee";
 let fillStyle2 = "#999999";
 let textFillStyle = "#222222";
@@ -8,8 +11,10 @@ let boardWidth = 20;
 let boardHeight = 20;
 let tileSeperation = 2;
 let tileWidth = 20;
-let mines = JSON.parse(localStorage.getItem("mines"));
-console.log(mines);
+let mines = 80;
+
+const box = document.getElementById("box");
+box.innerText = "Practice Mode   ["+score+"]";
 
 let board = [];
 let displayedBoard = [];
@@ -123,13 +128,61 @@ canvas.addEventListener("click", function(event) {
     }
 });
 
+async function checkForWin() {
+    let xC = 0;
+    let yC = 0;
+
+    let hasWon = true;
+
+    while (yC < boardHeight) {
+        while (xC < boardWidth) {
+            if (board[yC][xC] != 1) {
+                if (displayedBoard[yC][xC] != 10) {
+                    hasWon = false;
+                    break;
+                }
+            }
+            xC++;
+        } 
+        xC = 0;  
+        yC++;
+    }
+
+    if (hasWon) {
+        box.style.backgroundColor = "green";
+    }
+}
+
+function createStartingPos() {
+    let x1 = Math.floor(Math.round(Math.random()*(boardWidth-4))+2)
+    let y1 = Math.floor(Math.round(Math.random()*(boardHeight-4))+2)
+
+    console.log("x "+x1+"  y "+y1)
+
+    displayedBoard[x1][y1] = 0;
+
+    board[x1-1][y1-1] = 0;
+    board[x1-1][y1] = 0;
+    board[x1-1][y1+1] = 0;
+    board[x1][y1-1] = 0;
+    board[x1][y1] = 0;
+    board[x1][y1+1] = 0;
+    board[x1+1][y1-1] = 0;
+    board[x1+1][y1] = 0;
+    board[x1+1][y1+1] = 0;
+
+    mine(y1, x1);
+
+    drawBoard();
+}
+
 function mine(x, y) {
     
     if (board[y][x] === 1) {
         initializeBoard();
         createRandomBoard();
         drawBoard();
-        alert("You lose!");
+        box.style.backgroundColor = "red";
         return;
     }
 
@@ -146,12 +199,15 @@ function mine(x, y) {
     while (stack.length > 0) {
         const [currentX, currentY] = stack.pop();
 
+        
+
         if (visited.has(`${currentY},${currentX}`)) {
             continue;
         }
         visited.add(`${currentY},${currentX}`);
 
         total = 0;
+        
         for (const [dx, dy] of directions) {
             const newX = currentX + dx;
             const newY = currentY + dy;
@@ -172,10 +228,28 @@ function mine(x, y) {
             }
         }
 
-        displayedBoard[currentY][currentX] = total;
+        if (displayedBoard[currentY][currentX] != total) {
+            displayedBoard[currentY][currentX] = total;
+            score += 1;
+        }
     }
 
+    box.innerText = "Practice Mode       ["+score+"]";
+
+    checkForWin();
     drawBoard();
+}
+
+function reset() {
+    initializeBoard();
+    createRandomBoard();
+    drawBoard();
+    createStartingPos();
+    
+    score = 0;
+
+    box.innerText = "Practice Mode   ["+score+"]";
+    box.style.backgroundColor = "#999999"
 }
 
 
@@ -183,6 +257,7 @@ setCanvasSize();
 initializeBoard();
 createRandomBoard();
 drawBoard();
+createStartingPos();
 
 
 window.addEventListener('resize', () => {
@@ -193,5 +268,3 @@ window.addEventListener('resize', () => {
 document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
-
-

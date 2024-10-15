@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minesweeper 1v1</title>
+    <title>MineSweeper - Practice Mode</title>
 </head>
-<body style="margin: 0px; padding: 0px;">
-    <h1 id="heading">Opponent: unknown - 0</h1>
-    <canvas id="canvas" style="position: absolute; left: 10px; top: 100px; width: 442; height: 442; border-width: 0px; background-color: black;" align="center"></canvas>
+<body align="center" style="margin: 0px; padding: 10px; background-color: #555555;">
+    <div id="box" style=" background-color: #999999; border: 2px solid #000; width: 40%; height: 30%; left: 30%; position: relative;" align="center">
+        <h1 align="center" style="font-family: Arial, Helvetica, sans-serif; position: relative; top: 0;">Ranked Mode</h1>
+        <h3 id="heading" align="center" style="font-family: Arial, Helvetica, sans-serif; position: relative; bottom: 10%;">Name vs Name</h2>
+    </div>
+    <canvas id="canvas" style="width: 442px; border-width: 0px; background-color: black; margin: 15px;"></canvas>
+    
     <script src="main.js"></script>
 </body>
 </html>
