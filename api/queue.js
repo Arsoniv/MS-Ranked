@@ -88,7 +88,7 @@ export default async (req, res) => {
         [userName]
     )
 
-    if (selectResponse2.rows.length > 0 && selectResponse.rows.find(userName) === undefined && selectResponse3.rows.length === 0) {
+    if (selectResponse2.rows.length > 0 && selectResponse.rows.find(userName.toString()) === undefined && selectResponse3.rows.length === 0) {
     
         if (selectResponse.rows.length === 0) {
             const insertResponse = await pool.query(
