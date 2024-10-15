@@ -70,45 +70,59 @@ function createRandomBoard() {
 export default async (req, res) => {
     await pool.connect();
 
-    const {userName} = req.body;
+    const {userName, password} = req.body;
 
-    const selectResponse = await pool.query(
-        "SELECT * FROM queue"
+    const selectResponse2 = await pool.query(
+        "SELECT * FROM userData where userName = $1 and password = $2",
+        [userName, password]
     )
 
-    if (selectResponse.rows.length === 0) {
-        const insertResponse = await pool.query(
-            "INSERT INTO queue (username) VALUES ($1)",
-            [userName]
-        )
-        res.status(201).send({
-            "result": "queueing...", 
-            "you": userName, 
-            "opponent": "unknown",
-            "mines": "unknown",
-            "id": "unknown"
+    if (selectResponse2.rows.length > 0) {
 
-        })
+        const selectResponse = await pool.query(
+            "SELECT * FROM queue"
+        )
+    
+        if (selectResponse.rows.length === 0) {
+            const insertResponse = await pool.query(
+                "INSERT INTO queue (username) VALUES ($1)",
+                [userName]
+            )
+            res.status(201).send({
+                "result": "queueing...", 
+                "you": userName, 
+                "opponent": "unknown",
+                "mines": "unknown",
+                "id": "unknown"
+    
+            })
+        }else {
+            const deleteResponse = await pool.query(
+                "DELETE FROM queue WHERE username = $1",
+                [selectResponse.rows[0].username]
+            )
+    
+            initializeBoard();
+            createRandomBoard();
+    
+            const insertResponse = await pool.query(
+                "INSERT INTO matches (mines, playerone, playertwo, playeronescore, playertwoscore) VALUES ($1, $2, $3, $4, $5)",
+                [getMines(), selectResponse.rows[0].username, userName, 0, 0]
+            )
+            res.status(200).send({
+                "result": "Found match", 
+                "you": userName, 
+                "opponent": selectResponse.rows[0].username,
+                "mines": getMines,
+                "id": 0
+    
+            })
+        }
     }else {
-        const deleteResponse = await pool.query(
-            "DELETE FROM queue WHERE username = $1",
-            [selectResponse.rows[0].username]
-        )
-
-        initializeBoard();
-        createRandomBoard();
-
-        const insertResponse = await pool.query(
-            "INSERT INTO matches (mines, playerone, playertwo, playeronescore, playertwoscore) VALUES ($1, $2, $3, $4, $5)",
-            [getMines(), selectResponse.rows[0].username, userName, 0, 0]
-        )
-        res.status(200).send({
-            "result": "Found match", 
-            "you": userName, 
-            "opponent": selectResponse.rows[0].username,
-            "mines": getMines,
-            "id": 0
-
+        res.status(369).send({
+            "result": "User not found or password in valid, go fuck yourself", 
+            "userName": userName, 
+            "password": password
         })
     }
 };

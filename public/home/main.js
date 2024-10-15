@@ -1,8 +1,9 @@
 
 let first = false;
 let intervalNumber = 0;
-const button = document.getElementById("button")
-const nameIn = document.getElementById("nameIn")
+const button = document.getElementById("button");
+const nameIn = document.getElementById("nameIn");
+const passIn = document.getElementById("passIn");
 
 async function queue() {
     button.innerText = "loading...";
@@ -17,7 +18,7 @@ async function queue() {
     })
     if (response.status === 201) {
         button.innerText = "Queueing...";
-        intervalNumber = setInterval(queuePing, 5000);
+        intervalNumber = setInterval(queuePing, 1000);
     }
     if (response.status === 200) {
         button.innerText = "Match found!";
@@ -64,6 +65,27 @@ async function queuePing() {
 
     function changeLocation() {
         location = "play/";
+    }
+
+    async function createAccount() {
+        let userNameIn = nameIn.value;
+        let passNameIn = passIn.value;
+
+        const response = await fetch("api/createAccount", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userName: userNameIn,
+                password: passNameIn
+            })
+        })
+
+        if (response.status === 200) alert("account created");
+        if (response.status === 311) alert("Username in use, please use another name or log in.");
+
+
     }
 
 }

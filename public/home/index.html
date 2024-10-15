@@ -7,8 +7,14 @@
 </head>
 <body>
     <h1>Minesweeper Ranked</h1>
-    <input id="nameIn" type="text" placeholder="Name...">
-    <button id="button" onclick="queue()">Queue!</button>
+    <div style="padding: 0px; margin: 0px;">
+        <input style="width: 15%; padding: 0px;" id="nameIn" type="text" placeholder="Name...">
+        <input style="width: 15%; padding: 0px;" id="passIn" type="password" placeholder="Password...">
+    </div>
+    <div>
+        <button style="width: 30%;" id="button" onclick="queue()">Queue</button>
+        <button id="button" onclick="createAccount()">Create Account!</button>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
