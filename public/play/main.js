@@ -202,7 +202,7 @@ async function ping() {
         clearInterval(pingInterval);
     }
 
-    heading.innerText = (userName+" vs "+oppoName+"   -   "+oppoScore);
+    heading.innerText = (score+"   -   "+userName+" vs "+oppoName+"   -   "+oppoScore);
 }
 
 function mine(x, y) {
@@ -228,7 +228,6 @@ function mine(x, y) {
     ];
 
     while (stack.length > 0) {
-        score+=1;
         const [currentX, currentY] = stack.pop();
 
         if (visited.has(`${currentY},${currentX}`)) {
