@@ -54,11 +54,6 @@ function createRandomBoard() {
     }
 }
 
-function setCanvasSize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
 function drawBoard() {
     ctx.fillStyle = fillStyle;
     
@@ -178,8 +173,6 @@ function mine(x, y) {
     drawBoard();
 }
 
-
-setCanvasSize();
 initializeBoard();
 createRandomBoard();
 drawBoard();

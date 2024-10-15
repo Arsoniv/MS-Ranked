@@ -64,11 +64,6 @@ function createRandomBoard() {
     }
 }
 
-function setCanvasSize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
 function drawBoard() {
     ctx.fillStyle = fillStyle;
     
@@ -266,8 +261,6 @@ async function lose() {
     })
 }
 
-
-setCanvasSize();
 initializeBoard();
 loadBoard();
 drawBoard();
