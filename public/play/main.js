@@ -185,9 +185,11 @@ async function ping() {
 
     if (data.winner === oppoName) {
         alert("YOU LOST (server)")
+        clearInterval(pingInterval);
     }
     if (data.winner === userName) {
         alert("YOU WON (server)")
+        clearInterval(pingInterval);
     }
 
     heading.innerText = (userName+" vs "+oppoName+"   -   "+oppoScore);
@@ -199,6 +201,7 @@ function mine(x, y) {
         initializeBoard();
         alert("You lose!");
         lose();
+        clearInterval(pingInterval);
         return;
     }
 
