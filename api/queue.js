@@ -116,6 +116,8 @@ export default async (req, res) => {
         [userName]
     )
 
+    console.log("selectResponse2.rows.length:  "+selectResponse2.rows.length+" selectResponse4.rows.length:  "+selectResponse4.rows.length+"  selectResponse3.rows.length:  "+selectResponse3.rows.length);
+
     if (selectResponse2.rows.length > 0 && selectResponse4.rows.length === 0 && selectResponse3.rows.length === 0) {
     
         if (selectResponse.rows.length === 0) {
