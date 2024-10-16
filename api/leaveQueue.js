@@ -13,7 +13,7 @@ export default async (req, res) => {
     console.log(userName);
 
     const response = await pool.query(
-        "DELETE FROM queue WHERE username = $1"
+        "DELETE FROM queue WHERE username = $1",
         [userName]
     )
 
