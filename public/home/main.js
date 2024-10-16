@@ -97,7 +97,7 @@ async function leaveQueue() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: userName
+            userName: nameIn.value
         })
     })
 }
