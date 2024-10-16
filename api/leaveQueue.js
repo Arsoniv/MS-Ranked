@@ -10,6 +10,8 @@ export default async (req, res) => {
 
     const {userName} = req.body;
 
+    console.log(userName);
+
     const response = await pool.query(
         "DELETE FROM queue WHERE username = $1"
         [userName]
