@@ -1,4 +1,3 @@
-import { userInfo } from 'os';
 
 const { Pool } = require('pg');
 require('dotenv').config();
@@ -15,9 +14,8 @@ let mineCount = 80;
 const crypto = require('crypto');
 
 function secureRandom() {
-    // Generate 4 random bytes and convert to a number between 0 and 1
-    const randomBytes = crypto.randomBytes(4).readUInt32BE(0); // 32-bit random number
-    return randomBytes / Math.pow(2, 32); // Scale to a number between 0 and 1
+    const randomBytes = crypto.randomBytes(4).readUInt32BE(0);
+    return randomBytes / Math.pow(2, 32);
 }
 
 function createStartingPos() {
@@ -116,7 +114,7 @@ export default async (req, res) => {
         [userName]
     );    
 
-    console.log("selectResponse2.rows.length:  "+selectResponse2.rows.length+" selectResponse4.rows.length:  "+selectResponse4.rows.length+"  selectResponse3.rows.length:  "+selectResponse3.rows.length);
+    console.log("selectResponse2.rows.length:  "+selectResponse2.rows.length+" selectResponse4.rows.length:  "+selectResponse4.rows.length+"  selectResponse3[0]:  "+selectResponse3[0]);
 
     if (selectResponse2.rows.length > 0 && selectResponse4.rows.length === 0 && selectResponse3.rows.length === 0) {
     

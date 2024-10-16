@@ -288,7 +288,7 @@ setCanvasSize();
 initializeBoard();
 loadBoard();
 drawBoard();
-mine(firstMine[0], firstMine[1]);
+mine(firstMine[1], firstMine[0]);
 pingInterval = setInterval(ping, 2000);
 
 
