@@ -301,9 +301,9 @@ document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
 
-//window.addEventListener('beforeunload', function (event) {
-//   lose();
-//});
+window.addEventListener('beforeunload', function (event) {
+   lose();
+});
 
 
 function homePage() {

@@ -89,3 +89,19 @@ async function queuePing() {
     
 
 }
+
+async function leaveQueue() {
+    const response = await fetch("/api/leaveQueue", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userName: userName
+        })
+    })
+}
+
+window.addEventListener('beforeunload', function (event) {
+    leaveQueue();
+});
