@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home of MS Ranked</title>
 </head>
-<body>
-    <h1>Minesweeper Ranked</h1>
-    <div style="padding: 0px; margin: 0px;">
-        <input style="width: 15%; padding: 0px;" id="nameIn" type="text" placeholder="Name...">
-        <input style="width: 15%; padding: 0px;" id="passIn" type="password" placeholder="Password...">
+<body style="padding: 0px;" align="center">
+    <h1 id="heading" style="margin-bottom: 0px; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; background-color: #999999; border: 2px solid #000; width: 442px; text-align: center;">Minesweeper Ranked</h1>
+    <div style="margin-top: 0px; padding: 0px;">
+        <input style="width: 211px; margin: 0px; margin: 0 auto;" id="nameIn" type="text" placeholder="Name...">
+        <input style="width: 211px; margin: 0px; margin: 0 auto;" id="passIn" type="password" placeholder="Password...">
     </div>
-    <div>
-        <button style="width: 30%;" id="button" onclick="queue()">Queue</button>
-        <button id="button" onclick="createAccount()">Create Account!</button>
-        <a href="/public/practice/"><h3>practice</h3></a>
+    <div style="margin-top: 0px;">
+        <button style="width: 221px; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; background-color: #999999;" id="button" onclick="queue()">Queue</button>
+        <button style="width: 221px; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; background-color: #999999;" id="button" onclick="createAccount()">Create Account!</button>
     </div>
-    <h1 onclick="reset()" id="box" align="center" style="font-family: Arial, Helvetica, sans-serif; background-color: #999999; border: 2px solid #000; width: 40%; left: 30%; position: relative;">Practice Mode [0]</h1>
-    <canvas id="canvas" style="width: 442px; border-width: 0px; background-color: black;"></canvas>
+    <div style="margin-top: 10px;">
+        <h2 onclick="reset()" id="box" style="font-family: Arial, Helvetica, sans-serif; background-color: #999999; border: 2px solid #000; width: 442px; margin: 0 auto; text-align: center;">Practice Mode [0]</h2>
+        <canvas id="canvas" style="width: 442px; border-width: 0px; background-color: black; margin-top: 0px;"></canvas>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
