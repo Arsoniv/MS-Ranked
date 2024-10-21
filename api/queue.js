@@ -104,10 +104,7 @@ export default async (req, res) => {
     const selectResponse = await pool.query(
         "SELECT * FROM queue"
     )
-    const selectResponse4 = await pool.query(
-        "DELETE FROM queue WHERE username = $1",
-        [userName]
-    )
+    
 
     const selectResponse3 = await pool.query(
         "DELETE FROM matches WHERE (playerone = $1 OR playertwo = $1) AND winner IS NULL",
@@ -116,7 +113,12 @@ export default async (req, res) => {
 
     console.log("selectResponse2.rows.length:  "+selectResponse2.rows.length+" selectResponse4.rows.length:  "+selectResponse4.rows.length+"  selectResponse3[0]:  "+selectResponse3[0]);
 
-    if (selectResponse2.rows.length > 0 && selectResponse4.rows.length === 0) {
+    if (selectResponse2.rows.length > 0) {
+
+        const selectResponse4 = await pool.query(
+            "DELETE FROM queue WHERE username = $1",
+            [userName]
+        )
     
         if (selectResponse.rows.length === 0) {
             const insertResponse = await pool.query(
