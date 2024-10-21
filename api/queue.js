@@ -104,7 +104,15 @@ export default async (req, res) => {
     const selectResponse = await pool.query(
         "SELECT * FROM queue"
     )
-    
+
+
+    if (selectResponse2.rows.length > 0) {
+        const selectResponse4 = await pool.query(
+            "DELETE FROM queue WHERE username = $1",
+            [userName]
+        )
+    }
+
     const selectResponse5 = await pool.query(
         "SELECT * FROM queue WHERE username = $1",
         [userName]
@@ -116,11 +124,6 @@ export default async (req, res) => {
             "DELETE FROM matches WHERE (playerone = $1 OR playertwo = $1) AND winner IS NULL",
             [userName]
         );
-
-        const selectResponse4 = await pool.query(
-            "DELETE FROM queue WHERE username = $1",
-            [userName]
-        )
     
         if (selectResponse.rows.length === 0) {
             const insertResponse = await pool.query(
