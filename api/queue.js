@@ -105,7 +105,7 @@ export default async (req, res) => {
         "SELECT * FROM queue"
     )
     const selectResponse4 = await pool.query(
-        "SELECT * FROM queue WHERE username = $1",
+        "DELETE FROM queue WHERE username = $1",
         [userName]
     )
 
