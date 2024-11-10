@@ -283,7 +283,7 @@ async function login() {
 
     const data = response102.json();
 
-    if (response.status === 200) {
+    if (response102.status === 200) {
         middleMenu.innerHTML = '';
         middleMenu.innerText = data["result"];
     }else {
