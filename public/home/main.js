@@ -283,9 +283,11 @@ async function login() {
 
     const data = response102.json();
 
+    console.log(data);
+
     if (response102.status === 200) {
         middleMenu.innerHTML = '';
-        middleMenu.innerText = data["result"].join(",   ");
+        middleMenu.innerText = (data.result.join(",   "));
     }else {
         if (data["alert"] === 1) {
             alert(data["result"]);
