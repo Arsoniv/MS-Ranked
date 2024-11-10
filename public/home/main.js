@@ -23,6 +23,7 @@ async function createAccount() {
 }
 
 async function queue() {
+    button.disabled = true;
     button.innerText = "loading...";
     const response = await fetch("api/queue", {
         method: 'POST',
