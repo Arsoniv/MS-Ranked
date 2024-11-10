@@ -123,7 +123,6 @@ async function checkForWin() {
     if (hasWon) {
         box.style.backgroundColor = "green";
         localStorage.clear();
-        setTimeout(homePage, 1500);
 
         const response = await fetch("/api/win", {
             method: 'POST',
@@ -135,6 +134,8 @@ async function checkForWin() {
                 userName: userName
             })
         })
+
+        setTimeout(homePage, 5000);
     }
 }
 
@@ -193,13 +194,13 @@ async function ping() {
         box.style.
         backgroundColor = "red";
         localStorage.clear;
-        setTimeout(homePage, 1500);
+        setTimeout(homePage, 5000);
         clearInterval(pingInterval);
     }
     if (data.winner === userName) {
         box.style.backgroundColor = "green";
         localStorage.clear;
-        setTimeout(homePage, 1500);
+        setTimeout(homePage, 5000);
         clearInterval(pingInterval);
     }
 
@@ -212,8 +213,8 @@ function mine(x, y) {
         initializeBoard();
         box.style.backgroundColor = "red";
         localStorage.clear;
-        setTimeout(homePage, 1500);
         lose();
+        setTimeout(homePage, 5000);
         clearInterval(pingInterval);
         return;
     }
@@ -279,7 +280,7 @@ async function lose() {
         })
     })
     box.style.backgroundColor = "red";
-    setTimeout(homePage, 1500);
+    setTimeout(homePage, 5000);
     localStorage.clear;
 }
 
