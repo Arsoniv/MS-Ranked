@@ -281,7 +281,7 @@ async function login() {
         })
     })
 
-    const data = response102.json();
+    const data = await response102.json();
 
     console.log(data);
 
