@@ -285,7 +285,7 @@ async function login() {
 
     if (response102.status === 200) {
         middleMenu.innerHTML = '';
-        middleMenu.innerText = data["result"];
+        middleMenu.innerText = data["result"].join(",   ");
     }else {
         if (data["alert"] === 1) {
             alert(data["result"]);
