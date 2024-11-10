@@ -191,8 +191,7 @@ async function ping() {
     oppoScore = data.oppoScore;
 
     if (data.winner === oppoName) {
-        box.style.
-        backgroundColor = "red";
+        box.style.backgroundColor = "red";
         localStorage.clear;
         setTimeout(homePage, 5000);
         clearInterval(pingInterval);
