@@ -4,7 +4,7 @@ let intervalNumber = 0;
 const button = document.getElementById("button");
 const nameIn = document.getElementById("nameIn");
 const passIn = document.getElementById("passIn");
-
+const middleMenu = document.getElementById("middleMenu");
 async function createAccount() {
 
     const response = await fetch("api/createAccount", {
@@ -266,6 +266,32 @@ async function checkForWin() {
     if (hasWon) {
         box.style.backgroundColor = "green";
     }
+}
+
+
+async function login() {
+    const response102 = await fetch("api/login", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userName: nameIn.value,
+            password: passIn.value
+        })
+    })
+
+    const data = response102.json();
+
+    if (response.status === 200) {
+        middleMenu.innerHTML = '';
+        middleMenu.innerText = data["result"];
+    }else {
+        if (data["alert"] === 1) {
+            alert(data["result"]);
+        }
+    }
+
 }
 
 function createStartingPos() {

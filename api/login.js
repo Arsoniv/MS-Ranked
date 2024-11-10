@@ -23,7 +23,7 @@ export default async (req, res) => {
             [userName]
         )
 
-        res.status(201).send({"alert": 0, "result": data})
+        res.status(200).send({"alert": 0, "result": data})
     }else {
         res.status(201).send({"alert": 1, "result": "Could not find user, please try again or register."})
     }
