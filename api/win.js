@@ -10,7 +10,7 @@ export default async (req, res) => {
 
     const {id, userName} = req.body;
 
-    response = pool.query(
+    const response = pool.query(
         "UPDATE matches SET winner = $1 WHERE id = $2 AND WINNER IS NULL",
         [userName, id]
     )

@@ -7,9 +7,9 @@ const pool = new Pool({
 });
 
 let board = [];
-let boardHeight = 20;
-let boardWidth = 20;
-let mineCount = 80;
+let boardHeight = 10;
+let boardWidth = 10;
+let mineCount = 20;
 
 const crypto = require('crypto');
 

@@ -43,8 +43,14 @@ async function queue() {
         first = true;
         queuePing();
     }
+    if (response.status === 369) {
+        button.innerText = "Queue Failed! (reload)";
+    }
 }
 
+async function getPlayersInQueue() {
+
+}
 
 async function queuePing() {
     const response = await fetch("api/pingQueue", {
@@ -288,9 +294,6 @@ function createStartingPos() {
 function mine(x, y) {
     
     if (board[y][x] === 1) {
-        initializeBoard();
-        createRandomBoard();
-        drawBoard();
         box.style.backgroundColor = "red";
         return;
     }
@@ -307,8 +310,6 @@ function mine(x, y) {
 
     while (stack.length > 0) {
         const [currentX, currentY] = stack.pop();
-
-        
 
         if (visited.has(`${currentY},${currentX}`)) {
             continue;
