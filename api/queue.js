@@ -99,11 +99,6 @@ export default async (req, res) => {
     const deleteResponse2 = await pool.query(
         "DELETE FROM queue WHERE time < EXTRACT(EPOCH FROM NOW()) - 60"
     );
-    
-
-    const selectResponse = await pool.query(
-        "SELECT * FROM queue"
-    )
 
 
     let selectResponse3;
@@ -120,6 +115,10 @@ export default async (req, res) => {
     }
 
     if (selectResponse2.rows.length > 0 && selectResponse3.rows.length === 0) {
+
+        const selectResponse = await pool.query(
+            "SELECT * FROM queue"
+        )
 
         if (selectResponse.rows.length === 0) {
             const insertResponse = await pool.query(
