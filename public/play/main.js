@@ -108,8 +108,8 @@ async function checkForWin() {
 
     while (yC < boardHeight) {
         while (xC < boardWidth) {
-            if (board[yC][xC] != 1) {
-                if (displayedBoard[yC][xC] != 10) {
+            if (displayedBoard[yC][xC] === 10) {
+                if (board[yC][xC] !== 1) {
                     hasWon = false;
                     break;
                 }
