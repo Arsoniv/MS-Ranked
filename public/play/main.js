@@ -284,6 +284,7 @@ async function lose() {
             opponent: oppoName
         })
     })
+    removeEventListener("beforeunload", handleBeforeUnload);
     box.style.backgroundColor = "red";
     setTimeout(homePage, 5000);
     localStorage.clear;
