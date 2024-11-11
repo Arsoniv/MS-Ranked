@@ -21,8 +21,8 @@ module.exports = async (req, res) => {
     if (users.rows.length === 0) {
 
         await client.query(
-            "INSERT INTO userData (username, password) VALUES ($1, $2)",
-            [userName, password]
+            "INSERT INTO userData (username, password, elo) VALUES ($1, $2, $3)",
+            [userName, password, 1000]
         )
         res.status(200).send({"alert": 0, "status": "account created"})
     } else {
