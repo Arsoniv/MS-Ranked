@@ -120,17 +120,17 @@ let ctx = canvas.getContext("2d");
 
 
 let score = 0;
-let fillStyle = "#eeeeee";
-let fillStyle2 = "#999999";
-let textFillStyle = "#222222";
-let boardWidth = 20;
+let fillStyle = "aliceblue";
+let fillStyle2 = "#111122";
+let textFillStyle = "#000000";
+let boardWidth = 40;
 let boardHeight = 20;
 let tileSeperation = 2;
 let tileWidth = 20;
 let mines = 80;
 
 const box = document.getElementById("box");
-box.innerText = "Practice Mode   ["+score+"]";
+box.innerText = "Practice Mode - "+score;
 
 let board = [];
 let displayedBoard = [];
@@ -176,7 +176,7 @@ function createRandomBoard() {
 }
 
 function setCanvasSize() {
-    canvas.width = 442;
+    canvas.width = 884;
     canvas.height = 442;
 }
 
@@ -200,7 +200,7 @@ function drawBoard() {
             );
             if (displayedBoard[yC][xC] != 10 && displayedBoard[yC][xC] != 0) {
                 ctx.fillStyle = textFillStyle;
-                ctx.fillText(displayedBoard[yC][xC], (xC * (tileSeperation + tileWidth)) + tileSeperation + 10, (yC * (tileSeperation + tileWidth)) + tileSeperation + 10);
+                ctx.fillText(displayedBoard[yC][xC], (xC * (tileSeperation + tileWidth)) + tileSeperation + 8, (yC * (tileSeperation + tileWidth)) + tileSeperation + 13);
             }
             xC++;
         } 
@@ -265,7 +265,7 @@ async function checkForWin() {
     }
 
     if (hasWon) {
-        box.style.backgroundColor = "green";
+        box.style.borderColor = "green";
     }
 }
 
@@ -305,12 +305,10 @@ async function login() {
 }
 
 function createStartingPos() {
-    let x1 = Math.floor(Math.round(Math.random()*(boardWidth-4))+2)
+    let x1 = Math.floor(Math.round(Math.random()*(20-4))+2)
     let y1 = Math.floor(Math.round(Math.random()*(boardHeight-4))+2)
 
     console.log("x "+x1+"  y "+y1)
-
-    displayedBoard[x1][y1] = 0;
 
     board[x1-1][y1-1] = 0;
     board[x1-1][y1] = 0;
@@ -330,7 +328,7 @@ function createStartingPos() {
 function mine(x, y) {
     
     if (board[y][x] === 1) {
-        box.style.backgroundColor = "red";
+        box.style.borderColor = "red";
         return;
     }
 
@@ -380,22 +378,21 @@ function mine(x, y) {
         }
     }
 
-    box.innerText = "Practice Mode       ["+score+"]";
+    box.innerText = "Practice Mode - "+score;
 
     checkForWin();
     drawBoard();
 }
 
 function reset() {
+    score = 0;
     initializeBoard();
     createRandomBoard();
     drawBoard();
     createStartingPos();
-    
-    score = 0;
 
-    box.innerText = "Practice Mode   ["+score+"]";
-    box.style.backgroundColor = "#999999"
+    box.innerText = "Practice Mode - "+score;
+    box.style.borderColor = "beige"
 }
 
 

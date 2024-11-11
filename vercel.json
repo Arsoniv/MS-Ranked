@@ -8,6 +8,7 @@
     { "src": "/api/(.*)", "dest": "/api/$1.js" },
     { "src": "/play/(.*)", "dest": "/public/play/$1" },
     { "src": "/player/(.*)", "dest": "/public/player/$1" },
+    { "src": "/credits/(.*)", "dest": "/public/credits/$1" },
     { "src": "/(.*)", "dest": "/public/home/$1" }
   ]
 }

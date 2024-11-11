@@ -91,7 +91,7 @@ function drawBoard() {
             );
             if (displayedBoard[yC][xC] != 10 && displayedBoard[yC][xC] != 0) {
                 ctx.fillStyle = textFillStyle;
-                ctx.fillText(displayedBoard[yC][xC], (xC * (tileSeperation + tileWidth)) + tileSeperation + 10, (yC * (tileSeperation + tileWidth)) + tileSeperation + 10);
+                ctx.fillText(displayedBoard[yC][xC], (xC * (tileSeperation + tileWidth)) + tileSeperation + 8, (yC * (tileSeperation + tileWidth)) + tileSeperation + 13);
             }
             xC++;
         } 

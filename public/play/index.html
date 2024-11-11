@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MineSweeper - Ranked Mode</title>
+    <style>
+        .themeBasic{
+            font-family: "Calibri",serif;
+            color: aliceblue;
+            background-color: #111122;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 35px;
+            border: 1px beige solid;
+        }
+    </style>
 </head>
-<body align="center" style="margin: 0px; padding: 10px; background-color: #555555;">
-    <div id="box" style=" background-color: #999999; border: 2px solid #000; width: 40%; height: 30%; left: 30%; position: relative;" align="center">
+<body align="center" class="themeBasic" style="border: 0; margin: 0; padding: 10px;">
+    <div id="box" class="themeBasic" align="center" style="margin: 12px">
         <h1 align="center" style="font-family: Arial, Helvetica, sans-serif; position: relative; top: 0;">Ranked Mode</h1>
-        <h3 id="heading" align="center" style="font-family: Arial, Helvetica, sans-serif; position: relative; bottom: 10%;">Name vs Name</h2>
+        <h3 id="heading" align="center" style="font-family: Arial, Helvetica, sans-serif; position: relative; bottom: 10%;">Name vs Name</h3>
     </div>
     <canvas id="canvas" style="width: 442px; border-width: 0px; background-color: black; margin: 15px;"></canvas>
     

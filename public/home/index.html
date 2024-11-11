@@ -4,22 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home of MS Ranked</title>
+    <style>
+        .themeBasic{
+            font-family: "Calibri",serif;
+            color: aliceblue;
+            background-color: #111122;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 35px;
+            border: 1px beige solid;
+        }
+    </style>
 </head>
-<body style="padding: 0px;" align="center">
-    <h1 id="heading" style="margin-bottom: 0px; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; background-color: #999999; border: 2px solid #000; width: 100%; text-align: center;">Minesweeper Ranked</h1>
-    <div style="margin-top: 10px; position: absolute; height: 478px; top: calc((100% - 422px)/2 - 30px); left: 5%; border: 2px solid #000; width: 20%">
-        <button disabled="disabled" style="width: 100%; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; background-color: #999999;" id="button" onclick="queue()">Queue</button>
+<body align="center" class="themeBasic" style="border: 0;">
+    <h1 id="heading" class="themeBasic" style="margin-top: 0">Minesweeper Ranked</h1>
+    <div class="themeBasic">
+        <div id="middleMenu" >
+            <div>
+                <input class="themeBasic" id="nameIn" type="text" placeholder="Username...">
+                <input class="themeBasic" id="passIn" type="password" placeholder="Password...">
+                <button class="themeBasic" id="loginButton" onclick="login()">Log In</button>
+                <button class="themeBasic" id="createAccountButton" onclick="createAccount()">Create Account</button>
+            </div>
+        </div>
+        <div>
+            <a href="player/"><button class="themeBasic">Players</button></a>
+            <button class="themeBasic" disabled="disabled" id="button" style="background-color: blanchedalmond; color: #111122; width: min(30%)" onclick="queue()">Queue</button>
+            <a href="credits/"><button class="themeBasic">Credits</button></a>
+        </div>
     </div>
-    <div id="middleMenu" style="margin-top: 10px; position: absolute; height: 478px; top: calc((100% - 422px)/2 - 30px); left: 30%; border: 2px solid #000; width: 25%">
-        <input style="width: 97%; margin: 0;" id="nameIn" type="text" placeholder="Username...">
-        <input style="width: 97%; margin: 0;" id="passIn" type="password" placeholder="Password...">
-        <button style="width: 100%; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; background-color: #999999;" id="loginButton" onclick="login()">Log In</button>
-        <h6 style="padding: 0; margin: 0; font-family: Arial">or...</h6>
-        <button style="width: 100%; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; background-color: #999999;" id="createAccountButton" onclick="createAccount()">Create Account!</button>
-    </div>
-    <div style="margin-top: 10px; position: absolute; top: calc((100% - 422px)/2 - 30px); right: 5%; height: 478px;border: 2px solid #000; background-color: #000000">
-        <h2 onclick="reset()" id="box" style="font-family: Arial, Helvetica, sans-serif; background-color: #999999; border: 2px solid #000; width: 440px; margin: 0 auto; text-align: center; height: 30px ">Practice Mode [0]</h2>
-        <canvas id="canvas" style="width: 442px; border-width: 0px; background-color: black; margin: 0px;"></canvas>
+    <div class="themeBasic">
+        <h2 onclick="reset()" id="box" class="themeBasic">Practice Mode [0]</h2>
+        <canvas id="canvas" style="width: 884px; background-color: #111122; margin: 0;"></canvas>
     </div>
     <script src="main.js"></script>
 </body>
