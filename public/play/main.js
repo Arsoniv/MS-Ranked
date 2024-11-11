@@ -218,6 +218,7 @@ function mine(x, y) {
         box.style.backgroundColor = "red";
         localStorage.clear;
         lose();
+        alert("Winner is "+oppoName+" :(")
         setTimeout(homePage, 5000);
         clearInterval(pingInterval);
         return;
