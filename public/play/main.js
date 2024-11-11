@@ -123,6 +123,7 @@ async function checkForWin() {
     if (hasWon) {
         box.style.backgroundColor = "green";
         localStorage.clear();
+        removeEventListener("beforeunload", handleBeforeUnload);
 
         const response = await fetch("/api/win", {
             method: 'POST',
@@ -199,6 +200,7 @@ async function ping() {
         clearInterval(pingInterval);
     }
     if (data.winner === userName) {
+        removeEventListener("beforeunload", handleBeforeUnload);
         box.style.backgroundColor = "green";
         alert("winner is "+data.winner);
         localStorage.clear;
@@ -305,9 +307,14 @@ document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
 
-window.addEventListener('beforeunload', function (event) {
-   lose();
-});
+const handleBeforeUnload = (event) => {
+    lose();
+};
+
+// Add the event listener
+window.addEventListener("beforeunload", handleBeforeUnload);
+
+
 
 
 function homePage() {
