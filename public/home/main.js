@@ -7,7 +7,7 @@ const passIn = document.getElementById("passIn");
 const middleMenu = document.getElementById("middleMenu");
 async function createAccount() {
 
-    if (passIn.value.length <= 8) {
+    if (passIn.value.length < 8) {
         alert("Password must be at least 8 characters")
     }else {
         document.getElementById("createAccountButton").innerText = "Creating Account"
