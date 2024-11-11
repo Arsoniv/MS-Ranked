@@ -293,7 +293,7 @@ async function login() {
         const h2 = document.createElement("h2");
         h2.innerText = data.result.username +"\n"+data.result.elo+" elo";
 
-        h2.style.fontFamily = "font-family: Arial, Helvetica, sans-serif";
+        h2.style.fontFamily = "Arial, Helvetica, sans-serif";
 
         middleMenu.appendChild(h2);
     }else {
