@@ -287,8 +287,15 @@ async function login() {
     console.log(data);
 
     if (response102.status === 200) {
+        button.disabled = false;
         middleMenu.innerHTML = '';
-        middleMenu.innerText = (data.result.username +"  -  "+data.result.elo+" elo");
+
+        const h2 = document.createElement("h2");
+        h2.innerText = data.result.username +"\n"+data.result.elo+" elo";
+
+        h2.style.fontFamily = "font-family: Arial, Helvetica, sans-serif";
+
+        middleMenu.appendChild(h2);
     }else {
         if (data["alert"] === 1) {
             alert(data["result"]);
