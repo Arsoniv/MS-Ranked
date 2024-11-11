@@ -7,19 +7,22 @@ const passIn = document.getElementById("passIn");
 const middleMenu = document.getElementById("middleMenu");
 async function createAccount() {
 
-    const response = await fetch("api/createAccount", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            userName: nameIn.value,
-            password: passIn.value
+    if (passIn.value.length <= 8) {
+        alert("Password must be at least 8 characters")
+    }else {
+        const response = await fetch("api/createAccount", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userName: nameIn.value.trim(),
+                password: passIn.value
+            })
         })
-    })
-
-    if (response.status === 200) alert("account created");
-    if (response.status === 311) alert("Username in use, please use another name or log in.");
+        if (response.status === 200) alert("account created");
+        if (response.status === 311) alert("Username in use, please use another name or log in.");
+    }
 }
 
 async function queue() {
@@ -31,7 +34,7 @@ async function queue() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: nameIn.value,
+            userName: nameIn.value.trim(),
             password: passIn.value
         })
     })
@@ -60,7 +63,7 @@ async function queuePing() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: nameIn.value
+            userName: nameIn.value.trim()
         })
     })
 
@@ -104,7 +107,7 @@ async function leaveQueue() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: nameIn.value
+            userName: nameIn.value.trim()
         })
     })
 }
@@ -277,7 +280,7 @@ async function login() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: nameIn.value,
+            userName: nameIn.value.trim(),
             password: passIn.value
         })
     })
