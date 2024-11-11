@@ -120,6 +120,7 @@ export default async (req, res) => {
             "SELECT * FROM queue"
         )
 
+
         if (selectResponse.rows.length === 0) {
             const insertResponse = await pool.query(
                 "INSERT INTO queue (username) VALUES ($1)",
@@ -138,17 +139,26 @@ export default async (req, res) => {
                 "DELETE FROM queue WHERE username = $1",
                 [selectResponse.rows[0].username]
             )
+
+            const selectResponse420 = await pool.query(
+                "SELECT * FROM userdata where username = $1",
+                [selectResponse.rows[0].username]
+            )
+            const selectResponse4201 = await pool.query(
+                "SELECT * FROM userdata where username = $1",
+                [userName]
+            )
     
             initializeBoard();
             createRandomBoard();
             let firstMine = createStartingPos();
     
             const insertResponse = await pool.query(
-                "INSERT INTO matches (mines, playerone, playertwo, playeronescore, playertwoscore, firstMine) VALUES ($1, $2, $3, $4, $5, $6)",
-                [getMines(), selectResponse.rows[0].username, userName, 0, 0, firstMine]
+                "INSERT INTO matches (mines, playerone, playertwo, playeronescore, playertwoscore, firstMine, elo1, elo2) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
+                [getMines(), selectResponse.rows[0].username, userName, 0, 0, firstMine, selectResponse420.rows[0].elo, selectResponse4201.rows[0].elo]
             )
             res.status(200).send({
-                "result": "Found match", 
+                "result": "Found match",
                 "you": userName, 
                 "opponent": selectResponse.rows[0].username,
                 "mines": getMines,

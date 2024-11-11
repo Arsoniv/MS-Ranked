@@ -131,7 +131,8 @@ async function checkForWin() {
             },
             body: JSON.stringify({
                 id: gameId,
-                userName: userName
+                userName: userName,
+                opponent : oppoName
             })
         })
 
@@ -192,12 +193,14 @@ async function ping() {
 
     if (data.winner === oppoName) {
         box.style.backgroundColor = "red";
+        alert("winner is "+data.winner);
         localStorage.clear;
         setTimeout(homePage, 5000);
         clearInterval(pingInterval);
     }
     if (data.winner === userName) {
         box.style.backgroundColor = "green";
+        alert("winner is "+data.winner);
         localStorage.clear;
         setTimeout(homePage, 5000);
         clearInterval(pingInterval);
@@ -275,6 +278,7 @@ async function lose() {
         },
         body: JSON.stringify({
             id: gameId,
+            userName: userName,
             opponent: oppoName
         })
     })
