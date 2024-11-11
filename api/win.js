@@ -62,5 +62,5 @@ export default async (req, res) => {
         [opponent, loserRating]
     )
 
-    res.status(200).send({"result": "request complete", "response": response});
+    res.status(200).send({"result": "request complete"});
 };
