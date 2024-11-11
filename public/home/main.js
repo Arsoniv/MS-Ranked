@@ -10,6 +10,7 @@ async function createAccount() {
     if (passIn.value.length <= 8) {
         alert("Password must be at least 8 characters")
     }else {
+        document.getElementById("createAccountButton").innerText = "Creating Account"
         const response = await fetch("api/createAccount", {
             method: 'POST',
             headers: {
@@ -20,7 +21,8 @@ async function createAccount() {
                 password: passIn.value
             })
         })
-        if (response.status === 200) alert("account created");
+        if (response.status === 200) document.getElementById("createAccountButton").innerText = "Logging In...";
+        if (response.status === 200) setTimeout(login, 2000);
         if (response.status === 311) alert("Username in use, please use another name or log in.");
     }
 }
