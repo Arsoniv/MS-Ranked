@@ -1,4 +1,3 @@
-window.location.reload();
 
 if (localStorage.getItem("loginName")) {
     login(localStorage.getItem("loginName"), localStorage.getItem("loginPassword"));
