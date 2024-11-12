@@ -109,7 +109,7 @@ export default async (req, res) => {
             [userName]
         )
         selectResponse3 = await pool.query(
-            "SELECT FROM matches WHERE (playerone = $1 OR playertwo = $1) AND winner IS NULL",
+            "delete FROM matches WHERE (playerone = $1 OR playertwo = $1) AND winner IS NULL",
             [userName]
         );
     }
