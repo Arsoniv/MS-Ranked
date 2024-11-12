@@ -195,6 +195,7 @@ async function ping() {
         box.style.backgroundColor = "red";
         alert("winner is "+data.winner);
         setTimeout(homePage, 5000);
+        clearInterval(pingInterval);
     }
     if (data.winner === userName) {
         removeEventListener("beforeunload", handleBeforeUnload);
