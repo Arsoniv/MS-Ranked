@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Player Info</title>
+    <style>
+        .themeBasic{
+            font-family: "Calibri",serif;
+            color: aliceblue;
+            background-color: #111122;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 35px;
+            border: 1px beige solid;
+        }
+    </style>
 </head>
 <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJHCFUJSYz-CRv12huR0B-y1qndxD7YzrPrQ&s">
-<body>
-  <input id="userIn" type="text" placeholder="Username">
-  <button onclick="getPlayerInfo()">View Info</button>
-  <div id="contentBox"></div>
+<body align="center" class="themeBasic">
+  <input class="themeBasic" id="userIn" type="text" placeholder="Username">
+  <button class="themeBasic" onclick="getPlayerInfo()">View Info</button>
+  <div class="themeBasic" id="contentBox"></div>
   <script src="main.js"></script>
 </body>
 </html>
