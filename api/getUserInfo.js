@@ -20,7 +20,7 @@ export default async (req, res) => {
 
         res.status(201).send({"alert": 0, "result": data})
     }else {
-        res.status(201).send({"alert": 1, "result": "Could not find user, please try again."})
+        res.status(301).send({"alert": 1, "result": "Could not find user, please try again."})
     }
 };
 
