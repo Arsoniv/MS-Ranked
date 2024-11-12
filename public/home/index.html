@@ -18,11 +18,11 @@
     <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJHCFUJSYz-CRv12huR0B-y1qndxD7YzrPrQ&s">
 </head>
 <body align="center" class="themeBasic" style="border: 0; margin: 0; padding: 35px">
-    <button onclick="logOut()" id="signOutButton" hidden="hidden" class="themeBasic" style="border-color: red; border-width: 2px; position: absolute; top: 7px; left: 7px; margin: 0; padding: 3px; color: red; font-size: small">Log Out</button>
     <h1 id="heading" class="themeBasic" style="margin-top: 0">Minesweeper Ranked</h1>
     <div class="themeBasic">
         <div id="middleMenu" >
-            <div>
+            <div style="position: relative">
+                <button hidden="hidden" onclick="logOut()" id="signOutButton" class="themeBasic" style="border-color: red; border-width: 2px; position: absolute; top: 0; left: 0; margin: 0; padding: 3px; color: red; font-size: small">Log Out</button>
                 <input class="themeBasic" id="nameIn" type="text" placeholder="Username...">
                 <input class="themeBasic" id="passIn" type="password" placeholder="Password...">
                 <button class="themeBasic" id="loginButton" onclick="login()">Log In</button>
