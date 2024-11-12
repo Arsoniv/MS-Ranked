@@ -11,7 +11,7 @@ export default async (req, res) => {
     const {userName} = req.body;
 
     const response = await pool.query(
-        "select * from userdata where username = $1",
+        "select (username, elo) from userdata where username = $1",
         [userName]
     )
 
