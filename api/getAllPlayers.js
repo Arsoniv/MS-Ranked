@@ -9,8 +9,7 @@ export default async (req, res) => {
     await pool.connect();
 
     const response = await pool.query(
-        "select username, elo from userdata",
-        [userName]
+        "select username, elo from userdata"
     )
 
     if (response.rows.length > 0) {
