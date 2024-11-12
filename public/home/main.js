@@ -450,6 +450,8 @@ async function displayLeaderBoard() {
 
     const data = data2.result;
 
+    data.sort((a, b) => b.elo - a.elo);
+
     console.log(data);
 
     let i = 1;
