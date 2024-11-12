@@ -48,8 +48,8 @@ async function queue() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: nameIn.value.trim(),
-            password: passIn.value
+            userName: localStorage.getItem("loginName").trim(),
+            password: localStorage.getItem("loginPassword")
         })
     })
     if (response.status === 201) {
