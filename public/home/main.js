@@ -1,4 +1,3 @@
-import {Response as response10} from "undici-types";
 
 if (localStorage.getItem("loginName")) {
     login(localStorage.getItem("loginName"), localStorage.getItem("loginPassword"));
@@ -447,7 +446,7 @@ async function displayLeaderBoard() {
         method: 'GET',
     })
 
-    const data = await response10.json();
+    const data = await response102.json();
 
     console.log(data);
 
