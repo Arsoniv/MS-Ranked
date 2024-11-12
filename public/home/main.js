@@ -55,6 +55,7 @@ async function queue() {
     if (response.status === 201) {
         button.innerText = "Queueing...";
         intervalNumber = setInterval(queuePing, 1000);
+        document.getElementById("leaveQueueButton").hidden = false;
     }
     if (response.status === 200) {
         button.innerText = "Match found!";
@@ -124,6 +125,7 @@ async function leaveQueue() {
             userName: localStorage.getItem("loginName").trim()
         })
     })
+    window.location.reload();
 }
 
 window.addEventListener('beforeunload', function (event) {
