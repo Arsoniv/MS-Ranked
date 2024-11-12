@@ -1,3 +1,4 @@
+import {Response as response10} from "undici-types";
 
 if (localStorage.getItem("loginName")) {
     login(localStorage.getItem("loginName"), localStorage.getItem("loginPassword"));
@@ -435,3 +436,36 @@ window.addEventListener('resize', () => {
 document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
+
+async function displayLeaderBoard() {
+    const leaderBoard = document.getElementById("leaderBoard")
+
+    const userBoxTemplate = document.createElement("div");
+    userBoxTemplate.classList.add("themeBasic");
+
+    const response102 = await fetch("api/login", {
+        method: 'GET',
+    })
+
+    const data = await response10.json();
+
+    console.log(data);
+
+    let i = 1;
+
+    for (let user in data) {
+
+        console.log(user);
+
+        const userBox = userBoxTemplate;
+        userBox.innerText = i+": "+user["elo"]+" • "+user["username"];
+
+        leaderBoard.appendChild(userBox);
+
+        i++;
+    }
+
+
+}
+
+displayLeaderBoard();
