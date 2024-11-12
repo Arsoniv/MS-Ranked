@@ -77,7 +77,7 @@ async function queuePing() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: nameIn.value.trim()
+            userName: localStorage.getItem("loginName").trim()
         })
     })
 
@@ -121,7 +121,7 @@ async function leaveQueue() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: nameIn.value.trim()
+            userName: localStorage.getItem("loginName").trim()
         })
     })
 }
