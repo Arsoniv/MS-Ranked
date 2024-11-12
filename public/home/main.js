@@ -442,7 +442,7 @@ async function displayLeaderBoard() {
     const userBoxTemplate = document.createElement("div");
     userBoxTemplate.classList.add("themeBasic");
 
-    const response102 = await fetch("api/login", {
+    const response102 = await fetch("api/getAllPlayers", {
         method: 'GET',
     })
 
