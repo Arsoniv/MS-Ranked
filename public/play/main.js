@@ -122,7 +122,6 @@ async function checkForWin() {
 
     if (hasWon) {
         box.style.backgroundColor = "green";
-        localStorage.clear();
         removeEventListener("beforeunload", handleBeforeUnload);
 
         const response = await fetch("/api/win", {
@@ -195,15 +194,12 @@ async function ping() {
     if (data.winner === oppoName) {
         box.style.backgroundColor = "red";
         alert("winner is "+data.winner);
-        localStorage.clear;
         setTimeout(homePage, 5000);
-        clearInterval(pingInterval);
     }
     if (data.winner === userName) {
         removeEventListener("beforeunload", handleBeforeUnload);
         box.style.backgroundColor = "green";
         alert("winner is "+data.winner);
-        localStorage.clear;
         setTimeout(homePage, 5000);
         clearInterval(pingInterval);
     }
@@ -216,7 +212,6 @@ function mine(x, y) {
     if (board[y][x] === 1) {
         initializeBoard();
         box.style.backgroundColor = "red";
-        localStorage.clear;
         lose();
         alert("Winner is "+oppoName+" :(")
         setTimeout(homePage, 5000);
@@ -310,6 +305,11 @@ document.addEventListener("contextmenu", function(event) {
 });
 
 const handleBeforeUnload = (event) => {
+    localStorage.removeItem("mines");
+    localStorage.removeItem("id");
+    localStorage.removeItem("firstMine");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("opponent");
     lose();
 };
 
@@ -320,5 +320,11 @@ window.addEventListener("beforeunload", handleBeforeUnload);
 
 
 function homePage() {
+    localStorage.removeItem("mines");
+    localStorage.removeItem("id");
+    localStorage.removeItem("firstMine");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("opponent");
+
     location = "/";
 }

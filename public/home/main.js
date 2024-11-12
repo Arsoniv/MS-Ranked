@@ -1,4 +1,16 @@
 
+if (localStorage.getItem("loginName")) {
+    login(localStorage.getItem("loginName"), localStorage.getItem("loginPassword"));
+}
+
+function logOut() {
+    localStorage.removeItem("loginName");
+    localStorage.removeItem("loginPassword");
+    window.location.reload();
+}
+
+
+
 let first = false;
 let intervalNumber = 0;
 const button = document.getElementById("button");
@@ -275,15 +287,15 @@ async function checkForWin() {
 }
 
 
-async function login() {
+async function login(userName = nameIn.value.trim(), password = passIn.value) {
     const response102 = await fetch("api/login", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName: nameIn.value.trim(),
-            password: passIn.value
+            userName: userName,
+            password: password
         })
     })
 
@@ -301,6 +313,11 @@ async function login() {
         h2.style.fontFamily = "Arial, Helvetica, sans-serif";
 
         middleMenu.appendChild(h2);
+
+        localStorage.setItem("loginName", data.result.username);
+        localStorage.setItem("loginPassword", data.result.password);
+
+        document.getElementById("signOutButton").hidden = false;
     }else {
         if (data["alert"] === 1) {
             alert(data["result"]);
