@@ -15,5 +15,5 @@ async function getPlayerInfo() {
     const data = await response.json();
 
     console.innerText = "";
-    contentBox.innerText = data.result.row[0]+"   elo: "+data.result.row[1];
+    contentBox.innerText = data.result.row+"   elo: "+data.result.row;
 }
