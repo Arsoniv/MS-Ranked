@@ -438,8 +438,6 @@ document.addEventListener("contextmenu", function(event) {
 
 async function displayLeaderBoard() {
     const leaderBoard = document.getElementById("leaderBoard")
-
-    const userBoxTemplate = document.createElement("div");
     userBoxTemplate.classList.add("themeBasic");
 
     const response102 = await fetch("api/getAllPlayers", {
@@ -456,12 +454,13 @@ async function displayLeaderBoard() {
 
     let i = 1;
 
+    let text = "";
+
     for (let user in data) {
 
         console.log(user);
 
-        const userBox = userBoxTemplate;
-        userBox.innerText = i+": "+user["elo"]+" • "+user["username"];
+        text += i+": "+user["elo"]+" • "+user["username"]+"\n";
 
         leaderBoard.appendChild(userBox);
 
