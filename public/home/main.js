@@ -456,7 +456,9 @@ async function displayLeaderBoard() {
     data.forEach((user) => {
         const div = document.createElement("div");
 
-        div.innerText = i+": "+user.elo+" • "+user.username+"\n";
+        div.classList.add("themeBasic");
+
+        div.innerText = i+" • "+user.username+" ["+user.elo+"]";
 
         leaderBoard.appendChild(div);
 
