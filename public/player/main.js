@@ -15,5 +15,5 @@ async function getPlayerInfo() {
     const data = await response.json();
 
     console.innerText = "";
-    contentBox.innerText = data.result[0].username+" ["+data.result[0].elo+"]";
+    contentBox.innerText = data.result.username+" ["+data.result.elo+"]";
 }
