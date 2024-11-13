@@ -1,8 +1,8 @@
 const body = document.getElementById('body');
 
-if (window.innerWidth < 1200) {
+if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent)) {
     body.style.margin = "0";
-
+    body.style.padding = "0";
 }
 
 if (localStorage.getItem("loginName")) {
