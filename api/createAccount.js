@@ -8,11 +8,14 @@ const pool = new Pool({
 });
 
 function checkUsername(name) {
+
+    const bannedWords = ["nig", "fuck", "gay", "yann", "black", "porn"];
     let result = true;
 
-    if (name.contains("nig"|| "fuck"|| "gay"|| "yann"|| "black"|| "porn")) {
+    if (bannedWords.some(word => name.includes(word))) {
         result = false;
     }
+
 
     return result;
 }
@@ -36,6 +39,6 @@ module.exports = async (req, res) => {
         )
         res.status(200).send({"alert": 0, "status": "account created"})
     } else {
-        res.status(311).send({"alert": 1, "status": "username is use, try again"})
+        res.status(311).send({"alert": 1, "status": "username is use or invalid, try again"})
     }
 }
