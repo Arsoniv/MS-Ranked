@@ -462,10 +462,10 @@ async function displayLeaderBoard() {
             div.style.borderColor = "#ffc94a";
         }
         if (i === 2) {
-            div.style.borderColor = "#ff954a";
+            div.style.borderColor = "#b8b8b8";
         }
         if (i === 3) {
-            div.style.borderColor = "#b8b8b8";
+            div.style.borderColor = "#ff954a";
         }
 
         div.innerText = i+" • "+user.username+" ["+user.elo+"]";
