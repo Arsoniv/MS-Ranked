@@ -13,7 +13,7 @@ export default async (req, res) => {
     )
 
     if (response.rows.length > 0) {
-        const data = response.rows;
+        const data = response.rows[0];
 
         res.status(201).send({"alert": 0, "result": data})
     }else {
