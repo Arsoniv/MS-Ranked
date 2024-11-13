@@ -1,7 +1,9 @@
+const button = document.getElementById("button")
 const userIn = document.getElementById("userIn");
 const contentBox = document.getElementById("contentBox");
 
 async function getPlayerInfo() {
+    button.innerText = "Loading...";
     const response = await fetch("/api/getUserInfo", {
         method: 'POST',
         headers: {
@@ -14,6 +16,6 @@ async function getPlayerInfo() {
 
     const data = await response.json();
 
-    console.innerText = "";
+    button.innerText = "View Info";
     contentBox.innerText = data.result.username+" ["+data.result.elo+"]";
 }
