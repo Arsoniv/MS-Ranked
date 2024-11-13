@@ -247,6 +247,7 @@ function getTileCoordinates(mouseX, mouseY) {
     }
 }
 
+/*
 canvas.addEventListener("click", function(event) {
     
     let rect = canvas.getBoundingClientRect();
@@ -267,6 +268,7 @@ canvas.addEventListener("click", function(event) {
         }
     }
 });
+*/
 
 async function checkForWin() {
     let xC = 0;
