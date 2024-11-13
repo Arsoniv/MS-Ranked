@@ -453,17 +453,15 @@ async function displayLeaderBoard() {
 
     let i = 1;
 
-    let text = "";
-
     data.forEach((user) => {
-        console.log(user);
+        const div = document.createElement("div");
 
-        text += i+": "+user.elo+" • "+user.username+"\n";
+        div.innerText = i+": "+user.elo+" • "+user.username+"\n";
+
+        leaderBoard.appendChild(div);
 
         i++;
     })
-
-    leaderBoard.innerHTML = text;
 
 
 }
