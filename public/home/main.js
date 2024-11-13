@@ -456,6 +456,8 @@ async function displayLeaderBoard() {
     data.forEach((user) => {
         const div = document.createElement("div");
 
+        div.classList.add("themeBasic");
+
         if (i = 1) {
             div.style.borderColor = "#ffc94a";
         }
