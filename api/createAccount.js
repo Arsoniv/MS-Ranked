@@ -7,6 +7,16 @@ const pool = new Pool({
     }
 });
 
+function checkUsername(name) {
+    let result = true;
+
+    if (name.contains("nig"|| "fuck"|| "gay"|| "yann"|| "black"|| "porn")) {
+        result = false;
+    }
+
+    return result;
+}
+
 module.exports = async (req, res) => {
     
     const {userName, password} = req.body;
@@ -18,7 +28,7 @@ module.exports = async (req, res) => {
         [userName]
     );
 
-    if (users.rows.length === 0) {
+    if (users.rows.length === 0 && checkUsername(userName)) {
 
         await client.query(
             "INSERT INTO userData (username, password, elo) VALUES ($1, $2, $3)",
