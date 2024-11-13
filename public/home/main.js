@@ -467,6 +467,9 @@ async function displayLeaderBoard() {
         if (i === 3) {
             div.style.borderColor = "#ff954a";
         }
+        if (i <= 3) {
+            div.style.borderWidth = "3px";
+        }
 
         div.innerText = i+" • "+user.username+" ["+user.elo+"]";
 
