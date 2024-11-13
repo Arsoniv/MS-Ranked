@@ -477,6 +477,10 @@ async function displayLeaderBoard() {
 
         if (user.username === localStorage.getItem("loginName") && localStorage.getItem("loginName") != null) {
             div.style.borderStyle = "double";
+            div.style.borderWidth = "3px";
+            if (i <= 3) {
+                div.style.borderWidth = "6px";
+            }
         }
 
         div.innerText = i+" • "+user.username+" ["+user.elo+"]";
