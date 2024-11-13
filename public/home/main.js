@@ -1,3 +1,9 @@
+const body = document.getElementById('body');
+
+if (window.innerWidth < 1200) {
+    body.style.margin = "0";
+
+}
 
 if (localStorage.getItem("loginName")) {
     login(localStorage.getItem("loginName"), localStorage.getItem("loginPassword"));
