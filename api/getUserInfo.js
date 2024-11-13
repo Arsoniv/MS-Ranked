@@ -16,9 +16,9 @@ export default async (req, res) => {
     )
 
     if (response.rows.length > 0) {
-        const data = response.rows[0];
+        const data = response.rows;
 
-        res.status(201).send({"alert": 0, "result": data.rows})
+        res.status(201).send({"alert": 0, "result": data})
     }else {
         res.status(301).send({"alert": 1, "result": "Could not find user, please try again."})
     }
