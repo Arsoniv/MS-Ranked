@@ -448,6 +448,7 @@ async function displayLeaderBoard() {
     const data = data2.result;
 
     data.sort((a, b) => b.elo - a.elo);
+    data.slice(0, 10)
 
     console.log(data);
 
