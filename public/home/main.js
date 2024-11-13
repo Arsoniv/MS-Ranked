@@ -455,14 +455,13 @@ async function displayLeaderBoard() {
 
     let text = "";
 
-    for (let user in data) {
-
+    data.forEach((user) => {
         console.log(user);
 
         text += i+": "+user.elo+" • "+user.username+"\n";
 
         i++;
-    }
+    })
 
     leaderBoard.innerHTML = text;
 
