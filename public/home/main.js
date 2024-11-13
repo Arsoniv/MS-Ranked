@@ -459,7 +459,7 @@ async function displayLeaderBoard() {
 
         console.log(user);
 
-        text += i+": "+user["elo"]+" • "+user["username"]+"\n";
+        text += i+": "+user.elo+" • "+user.username+"\n";
 
         i++;
     }
