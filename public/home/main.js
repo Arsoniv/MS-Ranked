@@ -457,13 +457,13 @@ async function displayLeaderBoard() {
         const div = document.createElement("div");
 
         if (i = 1) {
-            div.style.borderColor = #ffc94a;
+            div.style.borderColor = "#ffc94a";
         }
         if (i = 2) {
-            div.style.borderColor = #ff954a;
+            div.style.borderColor = "#ff954a";
         }
         if (i = 3) {
-            div.style.borderColor = #b8b8b8;
+            div.style.borderColor = "#b8b8b8";
         }
 
         div.innerText = i+" • "+user.username+" ["+user.elo+"]";
