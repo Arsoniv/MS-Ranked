@@ -471,6 +471,10 @@ async function displayLeaderBoard() {
             div.style.borderWidth = "3px";
         }
 
+        if (user.username === localStorage.getItem("username") && localStorage.getItem("username") != null) {
+            div.style.borderStyle = "double";
+        }
+
         div.innerText = i+" • "+user.username+" ["+user.elo+"]";
 
         leaderBoard.appendChild(div);
