@@ -462,10 +462,10 @@ async function displayLeaderBoard() {
 
         text += i+": "+user["elo"]+" • "+user["username"]+"\n";
 
-        leaderBoard.appendChild(userBox);
-
         i++;
     }
+
+    leaderBoard.innerHTML = text;
 
 
 }
