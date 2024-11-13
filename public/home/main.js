@@ -35,7 +35,7 @@ async function createAccount() {
         })
         if (response.status === 200) document.getElementById("createAccountButton").innerText = "Logging In...";
         if (response.status === 200) setTimeout(login, 2000);
-        if (response.status === 311) alert("Username in use, please use another name or log in.");
+        if (response.status === 311) alert("Username in use (or invalid), please use another name or log in.");
     }
 }
 
