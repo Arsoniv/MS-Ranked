@@ -438,7 +438,6 @@ document.addEventListener("contextmenu", function(event) {
 
 async function displayLeaderBoard() {
     const leaderBoard = document.getElementById("leaderBoard")
-    userBoxTemplate.classList.add("themeBasic");
 
     const response102 = await fetch("api/getAllPlayers", {
         method: 'GET',
