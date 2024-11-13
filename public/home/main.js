@@ -141,8 +141,8 @@ window.addEventListener('beforeunload', function (event) {
 });
 
 
-let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
+//let canvas = document.getElementById("canvas");
+//let ctx = canvas.getContext("2d");
 
 
 
@@ -430,11 +430,11 @@ function reset() {
 }
 
 
-setCanvasSize();
-initializeBoard();
-createRandomBoard();
-drawBoard();
-createStartingPos();
+//setCanvasSize();
+//initializeBoard();
+//createRandomBoard();
+//drawBoard();
+//createStartingPos();
 
 
 window.addEventListener('resize', () => {
