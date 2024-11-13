@@ -320,6 +320,7 @@ async function login(userName = nameIn.value.trim(), password = passIn.value) {
         localStorage.setItem("loginPassword", data.result.password);
 
         document.getElementById("signOutButton").hidden = false;
+        await displayLeaderBoard();
     }else {
         if (data["alert"] === 1) {
             alert(data["result"]);
@@ -439,6 +440,8 @@ document.addEventListener("contextmenu", function(event) {
 async function displayLeaderBoard() {
     const leaderBoard = document.getElementById("leaderBoard")
 
+    leaderBoard.innerHTML = "";
+
     const response102 = await fetch("api/getAllPlayers", {
         method: 'GET',
     })
@@ -472,7 +475,7 @@ async function displayLeaderBoard() {
             div.style.borderWidth = "3px";
         }
 
-        if (user.username === localStorage.getItem("username") && localStorage.getItem("username") != null) {
+        if (user.username === localStorage.getItem("loginName") && localStorage.getItem("loginName") != null) {
             div.style.borderStyle = "double";
         }
 
@@ -482,8 +485,4 @@ async function displayLeaderBoard() {
 
         i++;
     })
-
-
 }
-
-displayLeaderBoard();
