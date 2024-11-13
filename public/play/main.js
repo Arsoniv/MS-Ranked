@@ -67,8 +67,8 @@ function createRandomBoard() {
 }
 
 function setCanvasSize() {
-    canvas.width = (tileWidth*tileSeperation)*boardWidth;
-    canvas.height = (tileWidth*tileSeperation)*boardHeight;
+    canvas.width = (tileWidth+tileSeperation)*boardWidth+tileSeperation;
+    canvas.height = (tileWidth+tileSeperation)*boardHeight+tileSeperation;
 }
 
 function drawBoard() {
