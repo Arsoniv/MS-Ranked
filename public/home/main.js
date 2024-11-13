@@ -156,9 +156,6 @@ let tileSeperation = 2;
 let tileWidth = 20;
 let mines = 80;
 
-const box = document.getElementById("box");
-box.innerText = "Practice Mode - "+score;
-
 let board = [];
 let displayedBoard = [];
 
