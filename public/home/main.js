@@ -315,6 +315,7 @@ async function login(userName = nameIn.value.trim(), password = passIn.value) {
 
     if (response102.status === 200) {
         button.disabled = false;
+        button.hidden = false;
         middleMenu.innerHTML = '';
 
         const h2 = document.createElement("h2");
