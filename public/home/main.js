@@ -1,6 +1,8 @@
 
 if (localStorage.getItem("loginName")) {
     login(localStorage.getItem("loginName"), localStorage.getItem("loginPassword"));
+}else {
+    displayLeaderBoard();
 }
 
 function logOut() {
