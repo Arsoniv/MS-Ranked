@@ -11,9 +11,9 @@ export default async (req, res) => {
     const {userName} = req.body;
 
     const response = await pool.query(
-        "select username, elo from userdata where username = $1",
+        "SELECT username, elo FROM userdata WHERE username ILIKE $1",
         [userName]
-    )
+    );
 
     if (response.rows.length > 0) {
         const data = response.rows[0];
