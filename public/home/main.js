@@ -435,11 +435,12 @@ function reset() {
 //drawBoard();
 //createStartingPos();
 
-
+/*
 window.addEventListener('resize', () => {
     setCanvasSize();
     drawBoard();
 });
+*/
 
 document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
