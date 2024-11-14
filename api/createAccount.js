@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     const client = await pool.connect();
 
     const users = await client.query(
-        "SELECT * FROM userData WHERE username = $1",
+        "SELECT * FROM userData WHERE username ILIKE $1",
         [userName]
     );
 
