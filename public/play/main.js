@@ -43,33 +43,16 @@ function loadBoard() {
     });
 }
 
-function createRandomBoard() {
-    let xC = 0;
-    let yC = 0;
-
-    const totalTiles = boardWidth * boardHeight;
-    const mineProbobility = mines/totalTiles;
-    console.log(mineProbobility);
-
-    while (yC < boardHeight) {
-        while (xC < boardWidth) {
-            const random = Math.random();
-            if (random <= mineProbobility) {
-                board[yC][xC] = 1;
-            }else {
-                board[yC][xC] = 0;
-            }
-            xC++;
-        } 
-        xC = 0;  
-        yC++;
-    }
-}
-
 function setCanvasSize() {
-    canvas.width = (tileWidth+tileSeperation)*boardWidth+tileSeperation;
-    canvas.height = (tileWidth+tileSeperation)*boardHeight+tileSeperation;
+    // Set the actual drawing size of the canvas
+    canvas.width = (tileWidth + tileSeperation) * boardWidth + tileSeperation;
+    canvas.height = (tileWidth + tileSeperation) * boardHeight + tileSeperation;
+
+    // Optionally set the CSS width/height for display (useful for scaling)
+    canvas.style.width = canvas.width + 'px';
+    canvas.style.height = canvas.height + 'px';
 }
+
 
 function drawBoard() {
     ctx.fillStyle = fillStyle;
@@ -287,19 +270,12 @@ async function lose() {
     localStorage.clear;
 }
 
-
 setCanvasSize();
 initializeBoard();
 loadBoard();
 drawBoard();
 mine(firstMine[1], firstMine[0]);
 pingInterval = setInterval(ping, 2000);
-
-
-window.addEventListener('resize', () => {
-    setCanvasSize();
-    drawBoard();
-});
 
 document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
