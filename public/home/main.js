@@ -68,7 +68,7 @@ async function queue() {
     if (response.status === 200) {
         button.innerText = "Match found!";
         first = true;
-        queuePing();
+        await queuePing();
     }
     if (response.status === 369) {
         button.innerText = "Queue Failed! (reload)";
@@ -116,10 +116,11 @@ async function queuePing() {
     }
 
     function changeLocation() {
-        location = "play/";
+        window.location.href = "play/";
     }
 
-    
+
+
 
 }
 
