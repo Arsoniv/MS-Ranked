@@ -234,10 +234,12 @@ function drawBoard() {
 }
 
 function getTileCoordinates(mouseX, mouseY) {
+    // Calculate the exact x and y tile positions by dividing by the total tile width (including separation)
+    const totalTileWidth = tileWidth + tileSeperation;
+    const tileX = Math.floor(mouseX / totalTileWidth);
+    const tileY = Math.floor(mouseY / totalTileWidth); // Note: using totalTileWidth here as well to ensure square tiles.
 
-    let tileX = Math.floor(mouseX / (tileWidth + tileSeperation));
-    let tileY = Math.floor(mouseY / (tileWidth + tileSeperation));
-
+    // Validate that the tile coordinates are within the bounds of the board
     if (tileX >= 0 && tileX < boardWidth && tileY >= 0 && tileY < boardHeight) {
         console.log(`Tile clicked: X = ${tileX}, Y = ${tileY}`);
         return { tileX, tileY };
@@ -247,7 +249,7 @@ function getTileCoordinates(mouseX, mouseY) {
     }
 }
 
-/*
+
 canvas.addEventListener("click", function(event) {
     
     let rect = canvas.getBoundingClientRect();
@@ -268,7 +270,7 @@ canvas.addEventListener("click", function(event) {
         }
     }
 });
-*/
+
 
 async function checkForWin() {
     let xC = 0;

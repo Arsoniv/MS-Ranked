@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
         [userName]
     );
 
-    if (users.rows.length === 0 && checkUsername(userName)) {
+    if (users.rows.length === 0 && checkUsername(userName) && userName.length <= 12) {
 
         await client.query(
             "INSERT INTO userData (username, password, elo) VALUES ($1, $2, $3)",
