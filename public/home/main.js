@@ -1,3 +1,7 @@
+if (localStorage.getItem("opponent")) {
+    document.getElementById("rejoinBox").hidden = false;
+}
+
 const body = document.getElementById('body');
 
 if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent)) {
