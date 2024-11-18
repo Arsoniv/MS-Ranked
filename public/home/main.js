@@ -347,7 +347,7 @@ async function login(userName = nameIn.value.trim(), password = passIn.value) {
             alert(data["result"]);
         }
     }
-
+    displayLeaderBoard();
 }
 
 function createStartingPos() {
