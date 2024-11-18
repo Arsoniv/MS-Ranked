@@ -580,8 +580,6 @@ async function getPlayerMatches(userNameIn) {
         div.innerText = " " + match.playerone + " vs " + match.playertwo;
 
         matchDiv.appendChild(div);
-
-        i++;
     })
 
 }
