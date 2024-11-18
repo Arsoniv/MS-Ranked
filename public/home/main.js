@@ -540,7 +540,7 @@ function getPlayerInfo() {
     console.log(orderedUsers);
 
     if (orderedUsers.some(user => user.username.toLowerCase() === userIn.value.toLowerCase())) {
-        const index = (orderedUsers.findIndex(user => user.username.toLowerCase() === userIn.value.toLowerCase())) + 1;
-        showPlayerInfo(index, orderedUsers[index]);
+        const index = orderedUsers.findIndex(user => user.username.toLowerCase() === userIn.value.toLowerCase());
+        showPlayerInfo(index + 1, orderedUsers[index]);
     }
 }
