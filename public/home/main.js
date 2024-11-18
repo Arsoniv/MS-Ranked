@@ -76,10 +76,6 @@ async function queue() {
     }
 }
 
-async function getPlayersInQueue() {
-
-}
-
 async function queuePing() {
     const response = await fetch("api/pingQueue", {
         method: 'POST',
@@ -421,31 +417,6 @@ function mine(x, y) {
     drawBoard();
 }
 
-function reset() {
-    score = 0;
-    initializeBoard();
-    createRandomBoard();
-    drawBoard();
-    createStartingPos();
-
-    box.innerText = "Practice Mode - "+score;
-    box.style.borderColor = "beige"
-}
-
-
-//setCanvasSize();
-//initializeBoard();
-//createRandomBoard();
-//drawBoard();
-//createStartingPos();
-
-/*
-window.addEventListener('resize', () => {
-    setCanvasSize();
-    drawBoard();
-});
-*/
-
 document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
@@ -471,36 +442,34 @@ async function displayLeaderBoard() {
     let i = 1;
 
     data.forEach((user) => {
-        if (i <= 10) {
-            const div = document.createElement("div");
+        const div = document.createElement("div");
 
-            div.classList.add("themeBasic");
+        div.classList.add("themeBasic");
 
-            if (i === 1) {
-                div.style.borderColor = "#ffc94a";
-            }
-            if (i === 2) {
-                div.style.borderColor = "#b8b8b8";
-            }
-            if (i === 3) {
-                div.style.borderColor = "#ff954a";
-            }
-            if (i <= 3) {
-                div.style.borderWidth = "3px";
-            }
-
-            if (user.username === localStorage.getItem("loginName") && localStorage.getItem("loginName") != null) {
-                div.style.borderStyle = "double";
-                div.style.borderWidth = "3px";
-                if (i <= 3) {
-                    div.style.borderWidth = "6px";
-                }
-            }
-
-            div.innerText = i+" • "+user.username+" ["+user.elo+"]";
-
-            leaderBoard.appendChild(div);
+        if (i === 1) {
+            div.style.borderColor = "#ffc94a";
         }
+        if (i === 2) {
+            div.style.borderColor = "#b8b8b8";
+        }
+        if (i === 3) {
+            div.style.borderColor = "#ff954a";
+        }
+        if (i <= 3) {
+            div.style.borderWidth = "3px";
+        }
+
+        if (user.username === localStorage.getItem("loginName") && localStorage.getItem("loginName") != null) {
+            div.style.borderStyle = "double";
+            div.style.borderWidth = "3px";
+            if (i <= 3) {
+                div.style.borderWidth = "6px";
+            }
+        }
+
+        div.innerText = i+" • "+user.username+" ["+user.elo+"]";
+
+        leaderBoard.appendChild(div);
 
         i++;
     })
