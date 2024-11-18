@@ -1,4 +1,4 @@
-let orderedUsers = null;
+let orderedUsers = [];
 
 setTimeout(queuePing, 800);
 setInterval(getQueueCount, 800)
@@ -537,6 +537,8 @@ function showPlayerInfo(i, user) {
 
 function getPlayerInfo() {
     const userIn = document.getElementById("userIn");
+
+    console.log(orderedUsers);
 
     if (orderedUsers.contains(userIn.value)) {
         const index = orderedUsers.indexOf(userIn.value);
