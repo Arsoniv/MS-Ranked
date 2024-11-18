@@ -15,13 +15,15 @@ let mines = JSON.parse(localStorage.getItem("mines"));
 let firstMine = JSON.parse(localStorage.getItem("firstMine"));
 let userName = localStorage.getItem("userName");
 let oppoName = localStorage.getItem("opponent");
+let userElo = localStorage.getItem("userElo");
+let oppoElo = localStorage.getItem("oppoElo");
 let oppoScore = 0;
 let paused = false;
 console.log(mines);
 
 const box = document.getElementById("box");
 const heading = document.getElementById("heading");
-heading.innerText = (userName+" vs "+oppoName+"   -   "+oppoScore);
+heading.innerText = (userName + "[" + userElo + "] vs " + oppoName + "[" + oppoElo + "]");
 
 let board = [];
 let displayedBoard = [];
@@ -188,7 +190,7 @@ async function ping() {
         clearInterval(pingInterval);
     }
 
-    heading.innerText = (score+"   -   "+userName+" vs "+oppoName+"   -   "+oppoScore);
+    heading.innerText = (score + "   -   " + userName + "[" + userElo + "] vs " + oppoName + "   -   " + oppoScore + "[" + oppoElo + "]");
 }
 
 function mine(x, y) {

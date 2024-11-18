@@ -1,6 +1,8 @@
 const contentBox = document.getElementById("contentBox");
 let orderedUsers = [];
 
+let elo = 0;
+
 setTimeout(queuePing, 800);
 setInterval(getQueueCount, 800)
 
@@ -102,6 +104,8 @@ async function queuePing() {
         localStorage.setItem("mines", JSON.stringify(data.mines));
         localStorage.setItem("id", data.id);
         localStorage.setItem("firstMine", JSON.stringify(data.firstMine));
+        localStorage.setItem("userElo", elo)
+        localStorage.setItem("oppoElo", data.oppoElo)
 
 
         if (first) {
@@ -321,6 +325,8 @@ async function login(userName = nameIn.value.trim(), password = passIn.value) {
         button.disabled = false;
         button.hidden = false;
         middleMenu.innerHTML = '';
+
+        elo = data.result.elo;
 
         const h2 = document.createElement("h2");
         h2.innerText = data.result.username +"\n"+data.result.elo+" elo";
