@@ -119,7 +119,7 @@ async function checkForWin() {
             })
         })
 
-        setTimeout(homePage, 5000);
+        homePage()
     }
 }
 
@@ -177,14 +177,14 @@ async function ping() {
     if (data.winner === oppoName) {
         box.style.backgroundColor = "red";
         alert("winner is "+data.winner);
-        setTimeout(homePage, 5000);
+        homePage()
         clearInterval(pingInterval);
     }
     if (data.winner === userName) {
         removeEventListener("beforeunload", handleBeforeUnload);
         box.style.backgroundColor = "green";
         alert("winner is "+data.winner);
-        setTimeout(homePage, 5000);
+        homePage();
         clearInterval(pingInterval);
     }
 
@@ -198,7 +198,7 @@ function mine(x, y) {
         box.style.backgroundColor = "red";
         lose();
         alert("Winner is "+oppoName+" :(")
-        setTimeout(homePage, 5000);
+        homePage();
         clearInterval(pingInterval);
         return;
     }
@@ -266,7 +266,7 @@ async function lose() {
     })
     removeEventListener("beforeunload", handleBeforeUnload);
     box.style.backgroundColor = "red";
-    setTimeout(homePage, 5000);
+    homePage();
     localStorage.clear;
 }
 
