@@ -495,6 +495,6 @@ async function getQueueCount() {
     if (data.length === 1) {
         document.getElementById("queueCount").innerText = "1 player in queue";
     } else {
-        document.getElementById("queueCount").innerText = data.length + "players in queue";
+        document.getElementById("queueCount").innerText = data.length + " players in queue";
     }
 }
