@@ -1,3 +1,4 @@
+let orderedUsers = null;
 
 setTimeout(queuePing, 800);
 setInterval(getQueueCount, 800)
@@ -443,6 +444,8 @@ async function displayLeaderBoard() {
 
     let i = 1;
 
+    orderedUsers = data;
+
     data.forEach((user) => {
         if (i <= 10) {
             const div = document.createElement("div");
@@ -496,5 +499,47 @@ async function getQueueCount() {
         document.getElementById("queueCount").innerText = "1 player in queue";
     } else {
         document.getElementById("queueCount").innerText = data.length + " players in queue";
+    }
+}
+
+const contentBox = document.getElementById("contentBox");
+
+function showPlayerInfo(i, user) {
+    const div = document.createElement("div");
+
+    div.classList.add("themeBasic");
+
+    if (i === 1) {
+        div.style.borderColor = "#ffc94a";
+    }
+    if (i === 2) {
+        div.style.borderColor = "#b8b8b8";
+    }
+    if (i === 3) {
+        div.style.borderColor = "#ff954a";
+    }
+    if (i <= 3) {
+        div.style.borderWidth = "3px";
+    }
+
+    if (user.username === localStorage.getItem("loginName") && localStorage.getItem("loginName") != null) {
+        div.style.borderStyle = "double";
+        div.style.borderWidth = "3px";
+        if (i <= 3) {
+            div.style.borderWidth = "6px";
+        }
+    }
+
+    div.innerText = i + " • " + user.username + " [" + user.elo + "]";
+
+    contentBox.appendChild(div);
+}
+
+function getPlayerInfo() {
+    const userIn = document.getElementById("userIn");
+
+    if (orderedUsers.contains(userIn.value)) {
+        const index = orderedUsers.indexOf(userIn.value);
+        showPlayerInfo(index, orderedUsers[index]);
     }
 }
