@@ -560,7 +560,7 @@ async function getPlayerMatches(userNameIn) {
         })
     })
 
-    const data2 = response.json();
+    const data2 = await response.json();
     const data = data2.response;
 
     const matchDiv = document.getElementById("matchDiv");
