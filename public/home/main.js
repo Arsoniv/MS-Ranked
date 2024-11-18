@@ -1,3 +1,4 @@
+const contentBox = document.getElementById("contentBox");
 let orderedUsers = [];
 
 setTimeout(queuePing, 800);
@@ -501,8 +502,6 @@ async function getQueueCount() {
         document.getElementById("queueCount").innerText = data.length + " players in queue";
     }
 }
-
-const contentBox = document.getElementById("contentBox");
 
 function showPlayerInfo(i, user) {
     const div = document.createElement("div");
