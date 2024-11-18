@@ -332,7 +332,7 @@ async function login(userName = nameIn.value.trim(), password = passIn.value) {
 
         document.getElementById("signOutButton").hidden = false;
         displayLeaderBoard();
-        getPlayerMatches(nameIn.value.trim());
+        getPlayerMatches(userName);
     }else {
         if (data["alert"] === 1) {
             alert(data["result"]);
