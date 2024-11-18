@@ -6,7 +6,7 @@ const pool = new Pool({
 });
 
 
-function calculateElo(player1Rating, player2Rating, player1Won, kFactor = 32) {
+function calculateElo(player1Rating, player2Rating, player1Won, kFactor = 32, maxChange = 28) {
     // Calculate expected scores based on current ratings
     const expectedScore1 = 1 / (1 + Math.pow(10, (player2Rating - player1Rating) / 400));
     const expectedScore2 = 1 / (1 + Math.pow(10, (player1Rating - player2Rating) / 400));
@@ -15,9 +15,16 @@ function calculateElo(player1Rating, player2Rating, player1Won, kFactor = 32) {
     const actualScore1 = player1Won ? 1 : 0;
     const actualScore2 = player1Won ? 0 : 1;
 
-    // Adjust ratings based on the outcome, only transferring points
-    const newPlayer1Rating = player1Rating + kFactor * (actualScore1 - expectedScore1);
-    const newPlayer2Rating = player2Rating + kFactor * (actualScore2 - expectedScore2);
+    // Adjust ratings based on the outcome
+    let ratingChange1 = kFactor * (actualScore1 - expectedScore1);
+    let ratingChange2 = kFactor * (actualScore2 - expectedScore2);
+
+    // Apply the max change limit
+    ratingChange1 = Math.max(-maxChange, Math.min(maxChange, ratingChange1));
+    ratingChange2 = Math.max(-maxChange, Math.min(maxChange, ratingChange2));
+
+    const newPlayer1Rating = player1Rating + ratingChange1;
+    const newPlayer2Rating = player2Rating + ratingChange2;
 
     return {
         newPlayer1Rating: Math.round(newPlayer1Rating),
