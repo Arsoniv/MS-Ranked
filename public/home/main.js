@@ -332,6 +332,7 @@ async function login(userName = nameIn.value.trim(), password = passIn.value) {
 
         document.getElementById("signOutButton").hidden = false;
         displayLeaderBoard();
+        getPlayerMatches(nameIn.value.trim());
     }else {
         if (data["alert"] === 1) {
             alert(data["result"]);
@@ -545,4 +546,42 @@ function getPlayerInfo() {
 
 function clearPlayerInfo() {
     contentBox.innerHTML = "";
+}
+
+
+async function getPlayerMatches(userNameIn) {
+    const response = await fetch("api/getUserMatches", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userName: userNameIn
+        })
+    })
+
+    const data2 = response.json();
+    const data = data2.response;
+
+    const matchDiv = document.getElementById("matchDiv");
+
+    data.forEach((match) => {
+
+        const div = document.createElement("div");
+
+        div.classList.add("themeBasic");
+
+        if (match.winner.toLowerCase() === userName.toLowerCase()) {
+            div.style.borderColor = "green";
+        } else {
+            div.style.borderColor = "red";
+        }
+
+        div.innerText = " " + match.playerone + " vs " + match.playertwo;
+
+        matchDiv.appendChild(div);
+
+        i++;
+    })
+
 }
