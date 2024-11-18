@@ -563,6 +563,8 @@ async function getPlayerMatches(userNameIn) {
     const data2 = await response.json();
     const data = data2.response;
 
+    data.sort((a, b) => b.id - a.id);
+
     const matchDiv = document.getElementById("matchDiv");
 
     data.forEach((match) => {
