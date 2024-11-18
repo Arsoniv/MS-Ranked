@@ -1,5 +1,6 @@
 
 setTimeout(queuePing, 800);
+setInterval(getQueueCount, 800)
 
 const body = document.getElementById('body');
 
@@ -428,7 +429,7 @@ async function displayLeaderBoard() {
     leaderBoard.innerHTML = "";
 
     const response102 = await fetch("api/getAllPlayers", {
-        method: 'GET',
+        method: 'GET'
     })
 
     const data2 = await response102.json();
@@ -480,4 +481,20 @@ async function displayLeaderBoard() {
 
 async function rejoinGame() {
     await queuePing();
+}
+
+async function getQueueCount() {
+    const response = await fetch("/api/getPlayersInQueue", {
+        method: 'GET'
+    })
+
+    const data2 = await response.json();
+
+    const data = data2.result;
+
+    if (data.length === 1) {
+        document.getElementById("queueCount").innerText = "1 player in queue";
+    } else {
+        document.getElementById("queueCount").innerText = data.length + "players in queue";
+    }
 }
