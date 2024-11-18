@@ -1,11 +1,3 @@
-
-
-function checkForGame() {
-    if (localStorage.getItem("opponent")) {
-        document.getElementById("rejoinBox").hidden = false;
-    }
-}
-
 setInterval(checkForGame, 2000);
 
 const body = document.getElementById('body');
@@ -513,4 +505,8 @@ async function displayLeaderBoard() {
 
         i++;
     })
+}
+
+async function rejoinGame() {
+    await queuePing();
 }
