@@ -1,4 +1,3 @@
-setInterval(checkForGame, 2000);
 
 const body = document.getElementById('body');
 
