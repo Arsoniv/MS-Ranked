@@ -334,7 +334,6 @@ async function login(userName = nameIn.value.trim(), password = passIn.value) {
             alert(data["result"]);
         }
     }
-    displayLeaderBoard();
 }
 
 function createStartingPos() {
@@ -442,34 +441,36 @@ async function displayLeaderBoard() {
     let i = 1;
 
     data.forEach((user) => {
-        const div = document.createElement("div");
+        if (i <= 10) {
+            const div = document.createElement("div");
 
-        div.classList.add("themeBasic");
+            div.classList.add("themeBasic");
 
-        if (i === 1) {
-            div.style.borderColor = "#ffc94a";
-        }
-        if (i === 2) {
-            div.style.borderColor = "#b8b8b8";
-        }
-        if (i === 3) {
-            div.style.borderColor = "#ff954a";
-        }
-        if (i <= 3) {
-            div.style.borderWidth = "3px";
-        }
-
-        if (user.username === localStorage.getItem("loginName") && localStorage.getItem("loginName") != null) {
-            div.style.borderStyle = "double";
-            div.style.borderWidth = "3px";
-            if (i <= 3) {
-                div.style.borderWidth = "6px";
+            if (i === 1) {
+                div.style.borderColor = "#ffc94a";
             }
+            if (i === 2) {
+                div.style.borderColor = "#b8b8b8";
+            }
+            if (i === 3) {
+                div.style.borderColor = "#ff954a";
+            }
+            if (i <= 3) {
+                div.style.borderWidth = "3px";
+            }
+
+            if (user.username === localStorage.getItem("loginName") && localStorage.getItem("loginName") != null) {
+                div.style.borderStyle = "double";
+                div.style.borderWidth = "3px";
+                if (i <= 3) {
+                    div.style.borderWidth = "6px";
+                }
+            }
+
+            div.innerText = i+" • "+user.username+" ["+user.elo+"]";
+
+            leaderBoard.appendChild(div);
         }
-
-        div.innerText = i+" • "+user.username+" ["+user.elo+"]";
-
-        leaderBoard.appendChild(div);
 
         i++;
     })
