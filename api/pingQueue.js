@@ -19,12 +19,12 @@ export default async (req, res) => {
         "SELECT * FROM matches WHERE (playerone = $1 OR playertwo = $1) AND winner IS NULL",
         [userName]
     )
-    const selectResponse3 = await pool.query(
-        "SELECT * FROM userdata where username = $1",
-        [selectResponse2.rows[0].playertwo]
-    )
 
     if (selectResponse2.rows.length > 0) {
+        const selectResponse3 = await pool.query(
+            "SELECT * FROM userdata where username = $1",
+            [selectResponse2.rows[0].playertwo]
+        )
         res.status(200).send({
             "result": "Found match", 
             "you": selectResponse2.rows[0].playerone, 
@@ -33,7 +33,6 @@ export default async (req, res) => {
             "id": selectResponse2.rows[0].id,
             "firstMine": selectResponse2.rows[0].firstmine,
             "oppoElo": selectResponse3.rows[0].elo
-
         })
     }else if (selectResponse.rows.length > 0) {
         const updateResponse2 = await pool.query(
