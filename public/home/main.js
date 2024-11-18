@@ -76,7 +76,7 @@ async function queue() {
     if (response.status === 200) {
         button.innerText = "Match found!";
         first = true;
-        await queuePing();
+        intervalNumber = setInterval(queuePing, 1000);
     }
     if (response.status === 369) {
         button.innerText = "Queue Failed! (reload)";
@@ -113,13 +113,12 @@ async function queuePing() {
             localStorage.setItem("opponent", data.opponent);
         }
 
-        
-            
-        setTimeout(changeLocation, 1000)
+
+        setTimeout(changeLocation, 2000)
     }
 
     function changeLocation() {
-        window.location.href = "play/";
+        window.location.assign("play/");
     }
 }
 

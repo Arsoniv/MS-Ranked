@@ -303,5 +303,5 @@ function homePage() {
     localStorage.removeItem("userName");
     localStorage.removeItem("opponent");
 
-    location = "/";
+    window.location.assign("/");
 }
