@@ -571,7 +571,7 @@ async function getPlayerMatches(userNameIn) {
 
         div.classList.add("themeBasic");
 
-        if (match.winner.toLowerCase() === userName.toLowerCase()) {
+        if (match.winner.toLowerCase() === userNameIn.toLowerCase()) {
             div.style.borderColor = "green";
         } else {
             div.style.borderColor = "red";
