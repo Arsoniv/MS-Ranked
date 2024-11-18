@@ -544,3 +544,7 @@ function getPlayerInfo() {
         showPlayerInfo(index + 1, orderedUsers[index]);
     }
 }
+
+function clearPlayerInfo() {
+    contentBox.innerHTML = "";
+}
