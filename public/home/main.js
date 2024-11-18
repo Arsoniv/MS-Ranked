@@ -1,4 +1,6 @@
 
+setTimeout(queuePing, 800);
+
 const body = document.getElementById('body');
 
 if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent)) {
@@ -92,7 +94,7 @@ async function queuePing() {
         console.log(data);
 
         button.innerText = "Match found!";
-        clearInterval(intervalNumber);
+
 
         localStorage.setItem("mines", JSON.stringify(data.mines));
         localStorage.setItem("id", data.id);
