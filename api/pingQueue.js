@@ -21,10 +21,6 @@ export default async (req, res) => {
     )
 
     if (selectResponse2.rows.length > 0) {
-        const selectResponse3 = await pool.query(
-            "SELECT * FROM userdata where username = $1",
-            [selectResponse2.rows[0].playertwo]
-        )
         res.status(200).send({
             "result": "Found match", 
             "you": selectResponse2.rows[0].playerone, 
@@ -32,7 +28,6 @@ export default async (req, res) => {
             "mines": selectResponse2.rows[0].mines,
             "id": selectResponse2.rows[0].id,
             "firstMine": selectResponse2.rows[0].firstmine,
-            "oppoElo": selectResponse3.rows[0].elo
         })
     }else if (selectResponse.rows.length > 0) {
         const updateResponse2 = await pool.query(

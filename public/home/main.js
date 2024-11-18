@@ -104,9 +104,6 @@ async function queuePing() {
         localStorage.setItem("mines", JSON.stringify(data.mines));
         localStorage.setItem("id", data.id);
         localStorage.setItem("firstMine", JSON.stringify(data.firstMine));
-        localStorage.setItem("userElo", elo)
-        localStorage.setItem("oppoElo", data.oppoElo)
-
 
         if (first) {
             localStorage.setItem("userName", data.opponent);
@@ -124,10 +121,6 @@ async function queuePing() {
     function changeLocation() {
         window.location.href = "play/";
     }
-
-
-
-
 }
 
 async function leaveQueue() {
