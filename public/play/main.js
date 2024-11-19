@@ -104,7 +104,7 @@ async function checkForWin() {
     }
 
     if (hasWon) {
-        box.style.backgroundColor = "green";
+        box.style.borderColor = "green";
         removeEventListener("beforeunload", handleBeforeUnload);
 
         const response = await fetch("/api/win", {
@@ -175,14 +175,14 @@ async function ping() {
     oppoScore = data.oppoScore;
 
     if (data.winner === oppoName) {
-        box.style.backgroundColor = "red";
+        box.style.borderColor = "red";
         alert("winner is "+data.winner);
         homePage()
         clearInterval(pingInterval);
     }
     if (data.winner === userName) {
         removeEventListener("beforeunload", handleBeforeUnload);
-        box.style.backgroundColor = "green";
+        box.style.borderColor = "green";
         alert("winner is "+data.winner);
         homePage();
         clearInterval(pingInterval);
@@ -195,7 +195,7 @@ function mine(x, y) {
     
     if (board[y][x] === 1) {
         initializeBoard();
-        box.style.backgroundColor = "red";
+        box.style.borderColor = "red";
         lose();
         alert("Winner is "+oppoName+" :(")
         homePage();
@@ -265,7 +265,7 @@ async function lose() {
         })
     })
     removeEventListener("beforeunload", handleBeforeUnload);
-    box.style.backgroundColor = "red";
+    box.style.borderColor = "red";
     homePage();
     localStorage.clear;
 }
