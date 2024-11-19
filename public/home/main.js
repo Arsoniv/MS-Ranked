@@ -8,14 +8,6 @@ setInterval(getQueueCount, 800)
 
 const body = document.getElementById('body');
 
-if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent)) {
-    const elements = document.querySelectorAll('.themeBasic');
-
-    elements.forEach(element => {
-        element.style.padding = "0";
-    });
-}
-
 if (localStorage.getItem("loginName")) {
     login(localStorage.getItem("loginName"), localStorage.getItem("loginPassword"));
 }else {
