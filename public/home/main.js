@@ -323,7 +323,7 @@ async function getPlayerMatches(userNameIn) {
     })
 
     const data2 = await response.json();
-    const data = data2.response;
+    let data = data2.response;
 
     data.sort((a, b) => b.id - a.id);
     data = data.slice(0, 10);
