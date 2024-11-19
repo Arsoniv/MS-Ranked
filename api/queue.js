@@ -101,30 +101,32 @@ export default async (req, res) => {
     );
 
 
-    let selectResponse3;
 
     if (selectResponse2.rows.length > 0) {
         const selectResponse4 = await pool.query(
             "DELETE FROM queue WHERE username = $1",
             [userName]
         )
-        selectResponse3 = await pool.query(
+        const selectResponse3 = await pool.query(
             "delete FROM matches WHERE (playerone = $1 OR playertwo = $1) AND winner IS NULL",
             [userName]
         );
     }
 
-    if (selectResponse2.rows.length > 0 && selectResponse3.rows.length === 0) {
+    if (selectResponse2.rows.length > 0) {
+
+        const userElo = selectResponse2.rows[0].elo;
 
         const selectResponse = await pool.query(
-            "SELECT * FROM queue"
-        )
+            "SELECT * FROM queue WHERE elo BETWEEN $1 AND $2",
+            [userElo - 180, userElo + 180]
+        );
 
 
         if (selectResponse.rows.length === 0) {
             const insertResponse = await pool.query(
-                "INSERT INTO queue (username) VALUES ($1)",
-                [userName]
+                "INSERT INTO queue (username, elo) VALUES ($1, $2)",
+                [userName, userElo]
             )
             res.status(201).send({
                 "result": "queueing...", 
@@ -132,18 +134,21 @@ export default async (req, res) => {
                 "opponent": "unknown",
                 "mines": "unknown",
                 "id": "unknown"
-    
             })
         }else {
+
+            const oppoUserName = selectResponse.rows[0].username;
+
             const deleteResponse = await pool.query(
                 "DELETE FROM queue WHERE username = $1",
-                [selectResponse.rows[0].username]
+                [oppoUserName]
             )
 
             const selectResponse420 = await pool.query(
                 "SELECT * FROM userdata where username = $1",
-                [selectResponse.rows[0].username]
+                [oppoUserName]
             )
+
             const selectResponse4201 = await pool.query(
                 "SELECT * FROM userdata where username = $1",
                 [userName]
@@ -164,7 +169,6 @@ export default async (req, res) => {
                 "mines": getMines,
                 "id": 0,
                 "firstMine": firstMine
-    
             })
         }
     }else {

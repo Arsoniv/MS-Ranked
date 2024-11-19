@@ -37,38 +37,47 @@ export default async (req, res) => {
 
     const {id, userName, opponent} = req.body;
 
-    const response3 = await pool.query(
-        "SELECT * from userdata where username = $1",
-        [userName]
+    const selectResponse = await pool.query(
+        "SELECT * from matches where id = $1 and winner is null",
+        [id]
     )
 
-    const response4 = await pool.query(
-        "SELECT * from userdata where username = $1",
-        [opponent]
-    )
+    if (selectResponse.rows.length > 0) {
+        const response3 = await pool.query(
+            "SELECT * from userdata where username = $1",
+            [userName]
+        )
 
-    let winnerRating = response3.rows[0].elo;
-    let loserRating = response4.rows[0].elo;
+        const response4 = await pool.query(
+            "SELECT * from userdata where username = $1",
+            [opponent]
+        )
 
-    const resultElo = calculateElo(winnerRating, loserRating, true);
+        let winnerRating = response3.rows[0].elo;
+        let loserRating = response4.rows[0].elo;
 
-    winnerRating = resultElo.newPlayer1Rating;
-    loserRating = resultElo.newPlayer2Rating;
+        const resultElo = calculateElo(winnerRating, loserRating, true);
 
-    const response = await pool.query(
-        "UPDATE matches SET winner = $1 WHERE id = $2 AND winner IS NULL",
-        [userName, id]
-    )
+        winnerRating = resultElo.newPlayer1Rating;
+        loserRating = resultElo.newPlayer2Rating;
 
-    const response5 = await pool.query(
-        "UPDATE userdata set elo = $2 where username = $1",
-        [userName, winnerRating]
-    )
+        const response = await pool.query(
+            "UPDATE matches SET winner = $1 WHERE id = $2 AND winner IS NULL",
+            [userName, id]
+        )
 
-    const response6 = await pool.query(
-        "UPDATE userdata set elo = $2 where username = $1",
-        [opponent, loserRating]
-    )
+        const response5 = await pool.query(
+            "UPDATE userdata set elo = $2 where username = $1",
+            [userName, winnerRating]
+        )
 
-    res.status(200).send({"result": "request complete"});
+        const response6 = await pool.query(
+            "UPDATE userdata set elo = $2 where username = $1",
+            [opponent, loserRating]
+        )
+
+        res.status(200).send({"result": "request complete"});
+    } else {
+        res.status(408).send({"result": "match not found"});
+    }
 };
