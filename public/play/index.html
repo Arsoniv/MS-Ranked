@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>MineSweeper - Ranked Mode</title>
     <style>
-        .themeBasic{
-            font-family: "Arial",serif;
+        .themeBasic {
+            font-family: "Arial", serif;
             color: aliceblue;
             background-color: #111122;
             border-radius: 5px;
             padding: 20px;
             margin: 35px;
-            border: 1px beige solid;
+            border: 1px solid beige;
+        }
+
+        /* Media query should be outside of the class definition */
+        @media (max-width: 768px) {
+            .themeBasic {
+                padding: 0;
+            }
         }
     </style>
     <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJHCFUJSYz-CRv12huR0B-y1qndxD7YzrPrQ&s">

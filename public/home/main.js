@@ -9,8 +9,11 @@ setInterval(getQueueCount, 800)
 const body = document.getElementById('body');
 
 if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent)) {
-    body.style.margin = "0";
-    body.style.padding = "0";
+    const elements = document.querySelectorAll('.themeBasic');
+
+    elements.forEach(element => {
+        element.style.padding = "0";
+    });
 }
 
 if (localStorage.getItem("loginName")) {
