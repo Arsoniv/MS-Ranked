@@ -9,7 +9,7 @@ const pool = new Pool({
 
 function checkUsername(name) {
 
-    const bannedWords = ["nig", "fuck", "gay", "yann", "black", "porn", "penis", "pussy", "dick", "vagina", "cock"];
+    const bannedWords = ["nig", "fuck", "gay", "yann", "black", "porn", "penis", "pussy", "dick", "vagina", "cock", "arsoniv", "gger", "gga"];
     let result = true;
 
     if (bannedWords.some(word => name.includes(word))) {
@@ -19,6 +19,16 @@ function checkUsername(name) {
 
     return result;
 }
+
+function isAscii(str) {
+    for (let i = 0; i < str.length; i++) {
+        if (str.charCodeAt(i) > 127) {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 module.exports = async (req, res) => {
     
@@ -31,7 +41,7 @@ module.exports = async (req, res) => {
         [userName]
     );
 
-    if (users.rows.length === 0 && checkUsername(userName) && userName.length <= 12) {
+    if (users.rows.length === 0 && checkUsername(userName.toLowerCase()) && userName.length <= 12 && isAscii(userName)) {
 
         await client.query(
             "INSERT INTO userData (username, password, elo) VALUES ($1, $2, $3)",
