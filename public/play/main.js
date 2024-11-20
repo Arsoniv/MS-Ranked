@@ -190,7 +190,7 @@ async function ping() {
         clearInterval(pingInterval);
     }
 
-    heading.innerText = (score + "   -   " + userName + " vs " + oppoName + "   -   " + oppoScore);
+    heading.innerText = (score + "   -   " + userName + "[" + youElo + "] vs " + oppoName + "[" + oppoElo + "]   -   " + oppoScore);
 }
 
 function mine(x, y) {
