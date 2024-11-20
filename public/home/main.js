@@ -331,6 +331,8 @@ async function getPlayerMatches(userNameIn) {
 
         if (match.winner.toLowerCase() === userNameIn.toLowerCase()) {
             div.style.borderColor = "green";
+        } else if (match.winner.toLowerCase() === "draw") {
+            div.style.borderColor = "grey";
         } else {
             div.style.borderColor = "red";
         }
