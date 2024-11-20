@@ -21,14 +21,27 @@ export default async (req, res) => {
     )
 
     if (selectResponse2.rows.length > 0) {
-        res.status(200).send({
-            "result": "Found match", 
-            "you": selectResponse2.rows[0].playerone, 
-            "opponent": selectResponse2.rows[0].playertwo,
-            "mines": selectResponse2.rows[0].mines,
-            "id": selectResponse2.rows[0].id,
-            "firstMine": selectResponse2.rows[0].firstmine,
-        })
+        if (selectResponse2.rows[0].playerone === userName) {
+            res.status(200).send({
+                "result": "Found match",
+                "you": selectResponse2.rows[0].playerone,
+                "opponent": selectResponse2.rows[0].playertwo,
+                "mines": selectResponse2.rows[0].mines,
+                "id": selectResponse2.rows[0].id,
+                "firstMine": selectResponse2.rows[0].firstmine,
+                "oppoElo": selectResponse2.rows[0].elo2,
+            })
+        } else {
+            res.status(200).send({
+                "result": "Found match",
+                "you": selectResponse2.rows[0].playertwo,
+                "opponent": selectResponse2.rows[0].playerone,
+                "mines": selectResponse2.rows[0].mines,
+                "id": selectResponse2.rows[0].id,
+                "firstMine": selectResponse2.rows[0].firstmine,
+                "oppoElo": selectResponse2.rows[0].elo1,
+            })
+        }
     }else if (selectResponse.rows.length > 0) {
         const updateResponse2 = await pool.query(
             "UPDATE queue SET time = EXTRACT(EPOCH FROM NOW()) WHERE username = $1",

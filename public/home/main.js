@@ -136,17 +136,6 @@ window.addEventListener('beforeunload', function (event) {
     leaveQueue();
 })
 
-let score = 0;
-let fillStyle = "aliceblue";
-let fillStyle2 = "#111122";
-let textFillStyle = "#000000";
-let boardWidth = 40;
-let boardHeight = 20;
-let tileSeperation = 2;
-let tileWidth = 20;
-let mines = 80;
-
-
 async function login(userName = nameIn.value.trim(), password = passIn.value) {
     const response102 = await fetch("api/login", {
         method: 'POST',

@@ -167,7 +167,6 @@ export default async (req, res) => {
                 "you": userName, 
                 "opponent": selectResponse.rows[0].username,
                 "mines": getMines,
-                "id": 0,
                 "firstMine": firstMine
             })
         }
