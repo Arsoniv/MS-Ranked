@@ -9,7 +9,7 @@ const pool = new Pool({
 
 function checkUsername(name) {
 
-    const bannedWords = ["nig", "fuck", "gay", "yann", "black", "porn", "penis", "pussy", "dick", "vagina", "cock", "arsoniv", "gger", "gga"];
+    const bannedWords = ["nig", "fuck", "gay", "yann", "black", "porn", "penis", "pussy", "dick", "vagina", "cock", "arsoniv", "gger", "gga", "draw", "null"];
     let result = true;
 
     if (bannedWords.some(word => name.includes(word))) {
