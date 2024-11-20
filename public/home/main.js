@@ -248,13 +248,20 @@ async function getQueueCount() {
 
     const data2 = await response.json();
 
-    const data = data2.result;
+    const queue = data2.queue;
+    const inGame = data2.inGame;
 
-    if (data.length === 1) {
-        document.getElementById("queueCount").innerText = "1 player in queue";
+    console.log(data2);
+
+    let text = (inGame * 2) + " players in game";
+
+    if (queue === 1) {
+        text += " • 1 player in queue";
     } else {
-        document.getElementById("queueCount").innerText = data.length + " players in queue";
+        text += " • " + queue + " players in queue";
     }
+
+    document.getElementById("queueCount").innerText = text;
 }
 
 function showPlayerInfo(i, user) {

@@ -14,7 +14,12 @@ module.exports = async (req, res) => {
         "SELECT * FROM queue"
     );
 
-    const data = response.rows;
+    const response2 = await client.query(
+        "SELECT * FROM matches where winner is null"
+    );
 
-    res.status(200).send({"alert": 0, "result": data})
+    const data = response.rows.length;
+    const data2 = response2.rows.length;
+
+    res.status(200).send({"alert": 0, "queue": data, "inGame": data2})
 }
