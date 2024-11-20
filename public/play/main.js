@@ -189,6 +189,13 @@ async function ping() {
         homePage();
         clearInterval(pingInterval);
     }
+    if (data.winner === "draw") {
+        removeEventListener("beforeunload", handleBeforeUnload);
+        box.style.borderColor = "grey";
+        alert("Match draw");
+        homePage();
+        clearInterval(pingInterval);
+    }
 
     heading.innerText = (score + "   -   " + userName + "[" + youElo + "] vs " + oppoName + "[" + oppoElo + "]   -   " + oppoScore);
 }
