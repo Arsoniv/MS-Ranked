@@ -43,7 +43,7 @@ export default async (req, res) => {
         [id]
     )
 
-    if (selectResponse.rows > 0) {
+    if (selectResponse.rows.length > 0) {
         const response3 = await pool.query(
             "SELECT * from userdata where username = $1",
             [userName]
