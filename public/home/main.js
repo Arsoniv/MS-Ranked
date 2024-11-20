@@ -110,7 +110,7 @@ async function queuePing() {
         }
 
 
-        setTimeout(changeLocation, 1000)
+        //setTimeout(changeLocation, 1000)
     }
 
     function changeLocation() {
