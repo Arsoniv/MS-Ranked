@@ -57,7 +57,7 @@ export default async (req, res) => {
         let winnerRating = response4.rows[0].elo;
         let loserRating = response3.rows[0].elo;
 
-        const resultElo = calculateElo(winnerRating, loserRating, true);
+        const resultElo = calculateElo(winnerRating, loserRating, true, 24);
 
         winnerRating = resultElo.newPlayer1Rating;
         loserRating = resultElo.newPlayer2Rating;
