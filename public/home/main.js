@@ -14,7 +14,8 @@ if (localStorage.getItem("loginName")) {
     displayLeaderBoard();
 }
 
-function logOut() {
+async function logOut() {
+    await leaveQueue();
     localStorage.removeItem("loginName");
     localStorage.removeItem("loginPassword");
     window.location.reload();
