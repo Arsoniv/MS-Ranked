@@ -104,9 +104,13 @@ async function queuePing() {
         if (first) {
             localStorage.setItem("userName", data.opponent);
             localStorage.setItem("opponent", data.you);
+            localStorage.setItem("youElo", data.oppoElo);
+            localStorage.setItem("oppoElo", data.youElo);
         }else {
             localStorage.setItem("userName", data.you);
             localStorage.setItem("opponent", data.opponent);
+            localStorage.setItem("youElo", data.youElo);
+            localStorage.setItem("oppoElo", data.oppoElo);
         }
 
 

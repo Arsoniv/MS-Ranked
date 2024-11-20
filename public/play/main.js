@@ -15,13 +15,15 @@ let mines = JSON.parse(localStorage.getItem("mines"));
 let firstMine = JSON.parse(localStorage.getItem("firstMine"));
 let userName = localStorage.getItem("userName");
 let oppoName = localStorage.getItem("opponent");
+let youElo = localStorage.getItem("youElo");
+let oppoElo = localStorage.getItem("oppoElo");
 let oppoScore = 0;
 let paused = false;
 console.log(mines);
 
 const box = document.getElementById("box");
 const heading = document.getElementById("heading");
-heading.innerText = (userName + " vs " + oppoName);
+heading.innerText = (userName + "[" + youElo + "] vs " + oppoName + "[" + oppoElo + "]");
 
 let board = [];
 let displayedBoard = [];
