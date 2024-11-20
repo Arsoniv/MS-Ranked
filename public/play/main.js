@@ -291,10 +291,13 @@ async function draw() {
             opponent: oppoName
         })
     })
-    removeEventListener("beforeunload", handleBeforeUnload);
-    box.style.borderColor = "grey";
-    homePage();
-    localStorage.clear;
+
+    if (response.status === 200) {
+        removeEventListener("beforeunload", handleBeforeUnload);
+        box.style.borderColor = "grey";
+        homePage();
+        localStorage.clear;
+    }
 }
 
 setCanvasSize();

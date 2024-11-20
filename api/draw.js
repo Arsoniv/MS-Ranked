@@ -18,23 +18,14 @@ export default async (req, res) => {
     let playerOne = (selectResponse.rows[0].playerone === userName);
 
     function isHigherScore() {
-        if (playerOne) {
-            if (selectResponse.rows[0].playeronescore >= selectResponse.rows[0].playertwoscore) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            if (selectResponse.rows[0].playeronescore <= selectResponse.rows[0].playertwoscore) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
+        const {playeronescore, playertwoscore} = selectResponse.rows[0];
+        return playerOne
+            ? playeronescore >= playertwoscore
+            : playeronescore <= playertwoscore;
     }
 
-    if (selectResponse.rows.length > 0) {
+
+    if (selectResponse.rows.length > 0 && isHigherScore()) {
 
         const response3 = await pool.query(
             "SELECT * from userdata where username = $1",
@@ -56,10 +47,8 @@ export default async (req, res) => {
             ["draw", id]
         )
 
-        res.status(200).send({"result": "request complete", "response": response});
+        res.status(200).send({"result": "request complete"});
     } else {
-        res.status(408).send({"result": "match not found"});
+        res.status(408).send({"result": "draw not permitted"});
     }
-
-
 };
