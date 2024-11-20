@@ -4,7 +4,7 @@ let orderedUsers = [];
 let elo = 0;
 
 setTimeout(queuePing, 800);
-setInterval(getQueueCount, 2500)
+setInterval(getQueueCount, 5000)
 
 const body = document.getElementById('body');
 
