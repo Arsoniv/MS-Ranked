@@ -272,6 +272,24 @@ async function lose() {
     localStorage.clear;
 }
 
+async function draw() {
+    const response = await fetch("/api/draw", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: gameId,
+            userName: userName,
+            opponent: oppoName
+        })
+    })
+    removeEventListener("beforeunload", handleBeforeUnload);
+    box.style.borderColor = "grey";
+    homePage();
+    localStorage.clear;
+}
+
 setCanvasSize();
 initializeBoard();
 loadBoard();
