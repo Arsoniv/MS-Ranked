@@ -90,7 +90,7 @@ function createRandomBoard() {
 
 export default async (req, res) => {
     await pool.connect();
-
+            
     const {
         userName,
         password
