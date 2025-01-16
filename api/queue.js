@@ -1,9 +1,10 @@
-
-const { Pool } = require('pg');
+const {
+    Pool
+} = require('pg');
 require('dotenv').config();
 
 const pool = new Pool({
-  connectionString: "postgres://default:d73vEaflDBKN@ep-lingering-sky-a7pftccr-pooler.ap-southeast-2.aws.neon.tech:5432/verceldb?sslmode=require",
+    connectionString: "postgres://default:d73vEaflDBKN@ep-lingering-sky-a7pftccr-pooler.ap-southeast-2.aws.neon.tech:5432/verceldb?sslmode=require",
 });
 
 let board = [];
@@ -34,7 +35,8 @@ function createStartingPos() {
     board[x1+1][y1] = 0;
     board[x1+1][y1+1] = 0;
 
-    return [x1, y1];
+    return [x1,
+        y1];
 }
 
 
@@ -75,12 +77,12 @@ function createRandomBoard() {
             console.log(random);
             if (random <= mineProbobility) {
                 board[yC][xC] = 1;
-            }else {
+            } else {
                 board[yC][xC] = 0;
             }
             xC++;
-        } 
-        xC = 0;  
+        }
+        xC = 0;
         yC++;
     }
 }
@@ -89,7 +91,10 @@ function createRandomBoard() {
 export default async (req, res) => {
     await pool.connect();
 
-    const {userName, password} = req.body;
+    const {
+        userName,
+        password
+    } = req.body;
 
     const selectResponse2 = await pool.query(
         "SELECT * FROM userData where userName = $1 and password = $2",
@@ -129,13 +134,13 @@ export default async (req, res) => {
                 [userName, userElo]
             )
             res.status(201).send({
-                "result": "queueing...", 
-                "you": userName, 
+                "result": "queueing...",
+                "you": userName,
                 "opponent": "unknown",
                 "mines": "unknown",
                 "id": "unknown"
             })
-        }else {
+        } else {
 
             const oppoUserName = selectResponse.rows[0].username;
 
@@ -153,27 +158,27 @@ export default async (req, res) => {
                 "SELECT * FROM userdata where username = $1",
                 [userName]
             )
-    
+
             initializeBoard();
             createRandomBoard();
             let firstMine = createStartingPos();
-    
+
             const insertResponse = await pool.query(
                 "INSERT INTO matches (mines, playerone, playertwo, playeronescore, playertwoscore, firstMine, elo1, elo2) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
                 [getMines(), selectResponse.rows[0].username, userName, 0, 0, firstMine, selectResponse420.rows[0].elo, selectResponse4201.rows[0].elo]
             )
             res.status(200).send({
                 "result": "Found match",
-                "you": userName, 
+                "you": userName,
                 "opponent": selectResponse.rows[0].username,
                 "mines": getMines,
                 "firstMine": firstMine
             })
         }
-    }else {
+    } else {
         res.status(369).send({
-            "result": "User not found or password in valid, go fuck yourself", 
-            "userName": userName, 
+            "result": "User not found or password in valid, go fuck yourself",
+            "userName": userName,
             "password": password
         })
     }
